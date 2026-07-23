@@ -1,0 +1,381 @@
+{
+  "datasets": [
+    "cities",
+    "neg_cities",
+    "sp_en_trans",
+    "neg_sp_en_trans",
+    "larger_than",
+    "smaller_than"
+  ],
+  "auroc": {
+    "mm": {
+      "cities": {
+        "cities": 0.9999606794589494,
+        "neg_cities": 0.41697646486888384,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 0.00041495100386223626,
+        "larger_than": 0.6407019691868177,
+        "smaller_than": 0.9167472706866646
+      },
+      "neg_cities": {
+        "cities": 0.3446856501472733,
+        "neg_cities": 0.9999821270267951,
+        "sp_en_trans": 0.9725493951291136,
+        "neg_sp_en_trans": 0.9788694181110154,
+        "larger_than": 0.5402734414855627,
+        "smaller_than": 0.7746423834302623
+      },
+      "sp_en_trans": {
+        "cities": 0.9994566616145729,
+        "neg_cities": 0.8969212016357345,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 0.0011810143956079032,
+        "larger_than": 0.5173635343332313,
+        "smaller_than": 0.9460779512294664
+      },
+      "neg_sp_en_trans": {
+        "cities": 0.005394063313220281,
+        "neg_cities": 0.9849670422374103,
+        "sp_en_trans": 0.0007022247757668613,
+        "neg_sp_en_trans": 0.9990424207603179,
+        "larger_than": 0.732443628201204,
+        "smaller_than": 0.3002316090194878
+      },
+      "larger_than": {
+        "cities": 0.8769088335382768,
+        "neg_cities": 0.579554391032057,
+        "sp_en_trans": 0.5457882473107983,
+        "neg_sp_en_trans": 0.8034409014012576,
+        "larger_than": 0.9998898071625344,
+        "smaller_than": 0.003457810427507397
+      },
+      "smaller_than": {
+        "cities": 0.9912082844805399,
+        "neg_cities": 0.8598508679115788,
+        "sp_en_trans": 0.990647642759105,
+        "neg_sp_en_trans": 0.26256822752082737,
+        "larger_than": 0.02000612182430364,
+        "smaller_than": 0.9981205999387818
+      }
+    },
+    "lr": {
+      "cities": {
+        "cities": 1.0,
+        "neg_cities": 0.3701188910177586,
+        "sp_en_trans": 0.9999361613840212,
+        "neg_sp_en_trans": 0.0020747550193111813,
+        "larger_than": 0.6724252627282931,
+        "smaller_than": 0.8495775941230487
+      },
+      "neg_cities": {
+        "cities": 0.26134397609311105,
+        "neg_cities": 1.0,
+        "sp_en_trans": 0.8546713907242491,
+        "neg_sp_en_trans": 0.9881260174279421,
+        "larger_than": 0.4307795122946638,
+        "smaller_than": 0.7971247831853893
+      },
+      "sp_en_trans": {
+        "cities": 0.9994262775601247,
+        "neg_cities": 0.8331861791872801,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 0.0,
+        "larger_than": 0.40790225487195186,
+        "smaller_than": 0.9600734618916437
+      },
+      "neg_sp_en_trans": {
+        "cities": 0.000475421087248706,
+        "neg_cities": 0.9941644742486202,
+        "sp_en_trans": 0.0,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 0.7242618100193858,
+        "smaller_than": 0.19357208448117538
+      },
+      "larger_than": {
+        "cities": 0.9990598816094255,
+        "neg_cities": 0.7904429637679087,
+        "sp_en_trans": 0.9131794822688244,
+        "neg_sp_en_trans": 0.574611382425229,
+        "larger_than": 1.0,
+        "smaller_than": 0.0006591164166921743
+      },
+      "smaller_than": {
+        "cities": 0.9893977522948898,
+        "neg_cities": 0.8238278904172267,
+        "sp_en_trans": 0.9896900635194229,
+        "neg_sp_en_trans": 0.65686743911392,
+        "larger_than": 0.0,
+        "smaller_than": 1.0
+      }
+    }
+  },
+  "centered_acc": {
+    "mm": {
+      "cities": {
+        "cities": 0.9772727489471436,
+        "neg_cities": 0.4324866235256195,
+        "sp_en_trans": 0.9858757257461548,
+        "neg_sp_en_trans": 0.02259887009859085,
+        "larger_than": 0.5944444537162781,
+        "smaller_than": 0.8530303239822388
+      },
+      "neg_cities": {
+        "cities": 0.3435828983783722,
+        "neg_cities": 0.9953208565711975,
+        "sp_en_trans": 0.895480215549469,
+        "neg_sp_en_trans": 0.9180790781974792,
+        "larger_than": 0.5126262903213501,
+        "smaller_than": 0.7292929291725159
+      },
+      "sp_en_trans": {
+        "cities": 0.9632353186607361,
+        "neg_cities": 0.8168449401855469,
+        "sp_en_trans": 0.9887005686759949,
+        "neg_sp_en_trans": 0.03954802080988884,
+        "larger_than": 0.4974747598171234,
+        "smaller_than": 0.8843434453010559
+      },
+      "neg_sp_en_trans": {
+        "cities": 0.0728609636425972,
+        "neg_cities": 0.9458556175231934,
+        "sp_en_trans": 0.008474576286971569,
+        "neg_sp_en_trans": 0.994350254535675,
+        "larger_than": 0.6585858464241028,
+        "smaller_than": 0.34696969389915466
+      },
+      "larger_than": {
+        "cities": 0.7881016135215759,
+        "neg_cities": 0.5541443824768066,
+        "sp_en_trans": 0.5310734510421753,
+        "neg_sp_en_trans": 0.7372881174087524,
+        "larger_than": 0.9929292798042297,
+        "smaller_than": 0.039393939077854156
+      },
+      "smaller_than": {
+        "cities": 0.9552139043807983,
+        "neg_cities": 0.7673797011375427,
+        "sp_en_trans": 0.9717513918876648,
+        "neg_sp_en_trans": 0.2853107452392578,
+        "larger_than": 0.0898989886045456,
+        "smaller_than": 0.9712121486663818
+      }
+    },
+    "lr": {
+      "cities": {
+        "cities": 0.9933155179023743,
+        "neg_cities": 0.3950534760951996,
+        "sp_en_trans": 0.9858757257461548,
+        "neg_sp_en_trans": 0.025423727929592133,
+        "larger_than": 0.6363636255264282,
+        "smaller_than": 0.7752525210380554
+      },
+      "neg_cities": {
+        "cities": 0.2747326195240021,
+        "neg_cities": 1.0,
+        "sp_en_trans": 0.799435019493103,
+        "neg_sp_en_trans": 0.9548022747039795,
+        "larger_than": 0.4550504982471466,
+        "smaller_than": 0.7383838295936584
+      },
+      "sp_en_trans": {
+        "cities": 0.9725936055183411,
+        "neg_cities": 0.7627005577087402,
+        "sp_en_trans": 0.9971751570701599,
+        "neg_sp_en_trans": 0.005649717524647713,
+        "larger_than": 0.4166666567325592,
+        "smaller_than": 0.90505051612854
+      },
+      "neg_sp_en_trans": {
+        "cities": 0.03943850100040436,
+        "neg_cities": 0.9659090638160706,
+        "sp_en_trans": 0.0,
+        "neg_sp_en_trans": 0.9971751570701599,
+        "larger_than": 0.6772727370262146,
+        "smaller_than": 0.25151515007019043
+      },
+      "larger_than": {
+        "cities": 0.9572192430496216,
+        "neg_cities": 0.7085561752319336,
+        "sp_en_trans": 0.8361582159996033,
+        "neg_sp_en_trans": 0.5536723136901855,
+        "larger_than": 1.0,
+        "smaller_than": 0.022727273404598236
+      },
+      "smaller_than": {
+        "cities": 0.9298128485679626,
+        "neg_cities": 0.7553476095199585,
+        "sp_en_trans": 0.9519773721694946,
+        "neg_sp_en_trans": 0.6101694703102112,
+        "larger_than": 0.0,
+        "smaller_than": 1.0
+      }
+    }
+  },
+  "raw_acc": {
+    "mm": {
+      "cities": {
+        "cities": 0.9772727489471436,
+        "neg_cities": 0.5,
+        "sp_en_trans": 0.7881355881690979,
+        "neg_sp_en_trans": 0.5,
+        "larger_than": 0.5,
+        "smaller_than": 0.5
+      },
+      "neg_cities": {
+        "cities": 0.30949199199676514,
+        "neg_cities": 0.9953208565711975,
+        "sp_en_trans": 0.505649745464325,
+        "neg_sp_en_trans": 0.6581920981407166,
+        "larger_than": 0.5,
+        "smaller_than": 0.5
+      },
+      "sp_en_trans": {
+        "cities": 0.8529411554336548,
+        "neg_cities": 0.779411792755127,
+        "sp_en_trans": 0.9887005686759949,
+        "neg_sp_en_trans": 0.005649717524647713,
+        "larger_than": 0.5,
+        "smaller_than": 0.5
+      },
+      "neg_sp_en_trans": {
+        "cities": 0.1350267380475998,
+        "neg_cities": 0.9338235259056091,
+        "sp_en_trans": 0.033898305147886276,
+        "neg_sp_en_trans": 0.994350254535675,
+        "larger_than": 0.5,
+        "smaller_than": 0.5
+      },
+      "larger_than": {
+        "cities": 0.5,
+        "neg_cities": 0.500668466091156,
+        "sp_en_trans": 0.5,
+        "neg_sp_en_trans": 0.7118644118309021,
+        "larger_than": 0.9929292798042297,
+        "smaller_than": 0.2818181812763214
+      },
+      "smaller_than": {
+        "cities": 0.5,
+        "neg_cities": 0.5,
+        "sp_en_trans": 0.5,
+        "neg_sp_en_trans": 0.5,
+        "larger_than": 0.07626262307167053,
+        "smaller_than": 0.9712121486663818
+      }
+    },
+    "lr": {
+      "cities": {
+        "cities": 1.0,
+        "neg_cities": 0.5,
+        "sp_en_trans": 0.5310734510421753,
+        "neg_sp_en_trans": 0.5,
+        "larger_than": 0.5,
+        "smaller_than": 0.5
+      },
+      "neg_cities": {
+        "cities": 0.39304813742637634,
+        "neg_cities": 1.0,
+        "sp_en_trans": 0.7175140976905823,
+        "neg_sp_en_trans": 0.7711864113807678,
+        "larger_than": 0.5,
+        "smaller_than": 0.5
+      },
+      "sp_en_trans": {
+        "cities": 0.970588207244873,
+        "neg_cities": 0.7145721912384033,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 0.2429378479719162,
+        "larger_than": 0.5,
+        "smaller_than": 0.502525269985199
+      },
+      "neg_sp_en_trans": {
+        "cities": 0.32085561752319336,
+        "neg_cities": 0.73128342628479,
+        "sp_en_trans": 0.08192090690135956,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 0.5,
+        "smaller_than": 0.5
+      },
+      "larger_than": {
+        "cities": 0.8810160160064697,
+        "neg_cities": 0.5915775299072266,
+        "sp_en_trans": 0.8333333134651184,
+        "neg_sp_en_trans": 0.5395480394363403,
+        "larger_than": 1.0,
+        "smaller_than": 0.493434339761734
+      },
+      "smaller_than": {
+        "cities": 0.9458556175231934,
+        "neg_cities": 0.5,
+        "sp_en_trans": 0.9519773721694946,
+        "neg_sp_en_trans": 0.5,
+        "larger_than": 0.0005050505278632045,
+        "smaller_than": 1.0
+      }
+    }
+  },
+  "summary": {
+    "mm": {
+      "auroc_signed_mean": 0.5968010401003804,
+      "auroc_folded_mean_SIGN_ORACLE": 0.8397598309472643,
+      "centered_acc_signed_mean": 0.5747082275338471,
+      "centered_acc_folded_mean_SIGN_ORACLE": 0.7961348889085154,
+      "raw_acc_signed_mean": 0.48576114469518267,
+      "auroc_signed_bands_offdiag": {
+        "<0.1": 6,
+        "0.1-0.3": 1,
+        "0.3-0.7": 8,
+        "0.7-0.9": 6,
+        ">=0.9": 9
+      },
+      "n_offdiag_cells": 30,
+      "auroc_signed_mean_aff_to_aff": 0.7040303606159403,
+      "auroc_signed_mean_aff_to_aff_excl_complements": 0.8424900395139472,
+      "aff_to_aff_cells": {
+        "cities->sp_en_trans": 1.0,
+        "cities->larger_than": 0.6407019691868177,
+        "cities->smaller_than": 0.9167472706866646,
+        "sp_en_trans->cities": 0.9994566616145729,
+        "sp_en_trans->larger_than": 0.5173635343332313,
+        "sp_en_trans->smaller_than": 0.9460779512294664,
+        "larger_than->cities": 0.8769088335382768,
+        "larger_than->sp_en_trans": 0.5457882473107983,
+        "larger_than->smaller_than": 0.003457810427507397,
+        "smaller_than->cities": 0.9912082844805399,
+        "smaller_than->sp_en_trans": 0.990647642759105,
+        "smaller_than->larger_than": 0.02000612182430364
+      }
+    },
+    "lr": {
+      "auroc_signed_mean": 0.6025658759726252,
+      "auroc_folded_mean_SIGN_ORACLE": 0.8581041418871644,
+      "centered_acc_signed_mean": 0.5787603448455533,
+      "centered_acc_folded_mean_SIGN_ORACLE": 0.8196765034769972,
+      "raw_acc_signed_mean": 0.5571584281162358,
+      "auroc_signed_bands_offdiag": {
+        "<0.1": 6,
+        "0.1-0.3": 2,
+        "0.3-0.7": 6,
+        "0.7-0.9": 7,
+        ">=0.9": 9
+      },
+      "n_offdiag_cells": 30,
+      "auroc_signed_mean_aff_to_aff": 0.7317772757223615,
+      "auroc_signed_mean_aff_to_aff_excl_complements": 0.8780668192251646,
+      "aff_to_aff_cells": {
+        "cities->sp_en_trans": 0.9999361613840212,
+        "cities->larger_than": 0.6724252627282931,
+        "cities->smaller_than": 0.8495775941230487,
+        "sp_en_trans->cities": 0.9994262775601247,
+        "sp_en_trans->larger_than": 0.40790225487195186,
+        "sp_en_trans->smaller_than": 0.9600734618916437,
+        "larger_than->cities": 0.9990598816094255,
+        "larger_than->sp_en_trans": 0.9131794822688244,
+        "larger_than->smaller_than": 0.0006591164166921743,
+        "smaller_than->cities": 0.9893977522948898,
+        "smaller_than->sp_en_trans": 0.9896900635194229,
+        "smaller_than->larger_than": 0.0
+      }
+    }
+  },
+  "metric_notes": "Matrices (auroc/centered_acc/raw_acc) are UNFOLDED: raw signs preserved. Folding appears ONLY in summary keys tagged SIGN_ORACLE and uses test labels to choose each direction's sign. M&T report signed transfer accuracy; only *_signed_mean is comparable to their table."
+}

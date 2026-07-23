@@ -1,0 +1,446 @@
+================================================================================
+TRUTH-PROBES — CURRENT STATE
+Linear truth probes in Gemma-2 and their behavior under induced falsehood
+Last updated: 2026-07-23
+================================================================================
+
+--------------------------------------------------------------------------------
+0. ONE-LINE SUMMARY
+--------------------------------------------------------------------------------
+Reproducing Marks & Tegmark's "linear truth direction" result on Gemma-2. H1 is
+COMPLETE on Gemma-2-2B (transfer reproduces M&T; combined-negation training
+worked). The project's strongest thread is now an ORIGINAL mechanistic finding:
+balanced-concat MM gives theta_combo = 1/2(theta_A+theta_B) exactly, which
+candidate-explains M&T's stated open classification-vs-NIE dissociation for
+combined training (theta_combo degenerate when constituents ANTIPODAL). The 2B
+NIE experiment RAN but was NON-CONFIRMING: 2B lacks the causal cross-transfer M&T
+had at 13B/70B (larger_than isn't causal for sp_en at 2B), so the antipodal test
+is untestable here -> the mechanism's causal prediction needs SCALE (9B/LLaMA) or
+a within-2B test set where larger_than is causal (e.g. cities). The classification
+side of the mechanism IS shown at 2B. Next: 9B run -> H2 OPTIONAL (induced-lie
+test was the planned contribution when H1 was expected to be a clean replication;
+H1 instead produced the stronger mechanistic result, so dropping H2 is defensible).
+
+--------------------------------------------------------------------------------
+1. PROJECT SETUP / ENVIRONMENT
+--------------------------------------------------------------------------------
+- Model: Gemma-2-2B for development (local), Gemma-2-9B for final numbers
+  (needs a cluster; ~18.5GB bf16 won't leave headroom on the 24GB M4 Pro).
+  Switched from the original Pythia-6.9B plan.
+- Hardware: Apple M4 Pro, 24GB unified memory, MPS (no CUDA).
+- MPS verified numerically identical to CPU for this model (max abs diff 0.0,
+  cosine 1.0), so local dev on MPS is trustworthy. Set TRANSFORMERLENS_ALLOW_MPS=1
+  to silence the (blanket) MPS warning.
+- Gemma-2 is gated: needs `hf auth login` + license acceptance (done, working).
+- venv at .venv; requirements.txt pinned to 6 top-level deps (torch 2.13.0,
+  transformer-lens 3.5.1, transformers 5.14.1, pandas 3.0.3, numpy 2.5.1,
+  huggingface-hub 1.24.0).
+- d_model = 2304, n_layers = 26 for Gemma-2-2B. (Pythia was 4096.)
+
+--------------------------------------------------------------------------------
+2. CODE — WHAT EXISTS AND IS VALIDATED
+--------------------------------------------------------------------------------
+src/probes.py
+  - TruthProbe(nn.Module, ABC): shared base. nn.Linear(d_model, 1) holds the
+    direction + bias. from_data() classmethod (alt constructor, dispatches via
+    cls), abstract _fit(), forward() (raw margin), predict() (sign), score()
+    (accuracy), direction (@property, unit-normalized + detached).
+  - LRProbe: torch/Adam, BCEWithLogitsLoss, full-batch. Defaults under-train on
+    real activations; use lr=1e-2, epochs=2000 (used everywhere downstream).
+  - MMProbe: closed-form difference-of-means; iid flag adds Sigma^-1 whitening
+    (LDA) with a ridge. requires_grad turned off after fit.
+  - PROBES = {"lr": LRProbe, "mm": MMProbe} registry.
+  - VALIDATED on synthetic 2-Gaussian data: accuracy, direction recovery, unit
+    norm, idempotent direction read all pass.
+
+src/data.py  (uses pandas; all disk I/O centralized here)
+  - load_statements(name): parse M&T CSVs (statement/label cols) -> texts, labels.
+  - save_activations/load_activations: single-layer canonical cache. Casts acts
+    -> float32, labels -> float on load (probes stay dtype-dumb).
+  - save_sweep/load_sweep/sweep_exists: all-layer intermediate cache (Option 1).
+  - save_probe/load_probe: persist/reload trained probes (03/04 reuse, no retrain).
+  - train_test_split (seeded), compute_mean_offset, center.
+  - CACHE_VERSION guards stale caches. DATASETS registry.
+
+src/activations.py  (TransformerLens)
+  - load_model(): auto device (cuda>mps>cpu), sensible dtype default, eval mode.
+  - verify_model(): LOAD CHECK — runs one forward, confirms
+    blocks.{layer}.hook_resid_post exists with right shape. RUN THIS FIRST.
+  - extract_activations(): batched, all requested layers in ONE forward pass,
+    last-real-token (end-of-statement) gather, robust to padding side, -> float32.
+  - VALIDATED: Gemma-2-2B loads, hook present, extraction works, MPS==CPU.
+
+--------------------------------------------------------------------------------
+3. SCRIPTS (run in order)
+--------------------------------------------------------------------------------
+scripts/01_extract_activations.py  [DONE — ran successfully]
+  Option 1 flow: EXTRACT all 26 layers for all 6 datasets once (cached, skipped
+  if present) -> SWEEP MM+LR accuracy per layer averaged across datasets ->
+  COMMIT the MM-chosen layer as single-layer caches. Config block up top.
+  Writes results/layer_sweep.json (both curves + per-dataset).
+
+scripts/02_train_probes.py  [DONE]
+  Train MM + LR at the committed layer per dataset, in-distribution held-out
+  accuracy + cos(mm,lr) direction similarity. Saves probes to results/probes/.
+  Writes results/probe_accuracy.json. CENTER flag exists, default False.
+
+scripts/03_transfer_eval.py  [DONE — rewritten to AUROC-first]
+  Train-on-A / test-on-B matrix, reloading 02's probes (no retrain). Headline
+  metric AUROC (threshold-free, centering-invariant) + per-test-set-centered
+  accuracy (M&T label-free protocol) + raw acc (for the record).
+  Writes results/transfer.json.
+
+scripts/aux_whitened_alignment.py  [DONE — auxiliary, not in 01-04 sequence]
+  Tests whether LR ≈ whitened MM (Sigma^-1 theta). Writes
+  results/whitened_alignment.json.
+
+scripts/04_induced_lie_test.py  [NOT WRITTEN — H2, the contribution]
+data/00 download: data fetched by hand via curl (not scripted).
+
+--------------------------------------------------------------------------------
+4. DATA
+--------------------------------------------------------------------------------
+- 6 Marks & Tegmark geometry-of-truth CSVs in data/ (downloaded via curl):
+  cities (1496), neg_cities (1496), sp_en_trans (354), neg_sp_en_trans (354),
+  larger_than (1980), smaller_than (1980). All balanced 50/50.
+- data/induced_lies.csv  -> DOES NOT EXIST YET. Needed for 04 (H2). This is the
+  project's original contribution: hand-built prompts that lead the model to
+  ASSERT a statement (true or false), held separate from the base data.
+
+--------------------------------------------------------------------------------
+5. RESULTS SO FAR (Gemma-2-2B)
+--------------------------------------------------------------------------------
+LAYER SWEEP (results/layer_sweep.json)
+  - Chose LAYER 13 of 26 (by MM accuracy averaged over all 6 datasets).
+  - Classic curve: ~chance at layer 0 -> sharp rise -> broad plateau 11-16 ->
+    gentle decline. MM peaks 0.990 @ 13; LR ~1.0 across the peak.
+  - LR >= MM at every layer, gap widest OFF-peak (LR exploits any separable
+    structure incl. nuisance features); at the peak MM ~= LR (M&T's finding).
+
+IN-DISTRIBUTION (results/probe_accuracy.json), layer 13, held-out 20%
+  - LR: 1.000 on all 6 datasets. MM: 0.975-1.000 (mean 0.990).
+  - cos(mm, lr) direction similarity: 0.68-0.87, mean ~0.77. Both probes classify
+    the same points but along meaningfully different axes.
+
+WHITENED-ALIGNMENT CHECK (results/whitened_alignment.json)
+  - Tested M&T theory: unregularized LR -> Sigma^-1 theta_mm (needs n >> d).
+  - RESULT: the tilt is NOT the covariance correction AT THIS REGIME. Real
+    whitening (small ridge) DEGRADES cos(iid, lr); large ridge -> back to plain MM.
+  - CAUSE: d_model 2304 > n_train for every dataset -> within-class covariance is
+    rank-deficient -> Sigma^-1 noise-dominated. M&T's "enough data" premise fails.
+  - Genuinely testable only where n >> d (9B, or concatenated datasets).
+
+TRANSFER / H1 (results/transfer.json), AUROC-first
+  - IMPORTANT CORRECTION #1: the first pass reported raw accuracy and hit exactly
+    0.500 in 16 cells. That was a BIAS-TRANSFER ARTIFACT (constant prediction),
+    NOT a direction failure: the trained bias (train-set midpoint) lands off the
+    test set's projection distribution. Caught and fixed. Do NOT cite the raw-acc
+    transfer numbers as evidence of "no shared direction."
+  - The BIAS does not transfer; the DIRECTION does. This is exactly why M&T center
+    + use unbiased probes. Correct protocol = per-dataset SELF-centering at
+    use-time (NOT a single stored offset centering all datasets by cities' mean).
+
+  - TASK A (signed vs sign-folded — do NOT fold sign silently):
+      * FOLDED metrics max(a,1-a) use TEST labels to pick each direction's sign =
+        SIGN-ORACLE. They answer "does the direction carry truth info," NOT "does
+        the probe transfer usably." M&T report SIGNED accuracy; only signed
+        numbers are comparable to their table.
+      * Signed off-diag means (MM/LR): AUROC 0.597/0.603, centered-acc 0.575/0.579.
+        BUT these means sit in the empty valley of a BIMODAL distribution — no
+        real cell takes ~0.60. Reporting the mean is misleading here.
+      * BANDED counts over the 30 off-diagonal cells (signed AUROC), the honest
+        summary. MM: >=0.9: 9 | 0.7-0.9: 6 | 0.3-0.7: 8 | 0.1-0.3: 1 | <0.1: 6.
+        LR:  >=0.9: 9 | 0.7-0.9: 7 | 0.3-0.7: 6 | 0.1-0.3: 2 | <0.1: 6.
+        => 15/30 at the extremes: the direction is either right or exactly
+        backwards, almost never confused. Bimodality is STRUCTURE, not noise.
+
+  - HEADLINE (H1, clean): cross-TOPIC transfer, affirmative->affirmative, SIGNED,
+    no oracle, EXCLUDING the two larger<->smaller cells that are logical
+    complements BY CONSTRUCTION (stated a priori, not "dropping the worst cells"):
+        MM 0.8425, LR 0.8781.
+    A probe trained on city facts ranks Spanish-English translations correctly
+    (cities<->sp_en_trans ~1.0 both ways; smaller_than->cities/sp_en ~0.99).
+    This is a real reproduction of M&T's core claim at 2B — what H1 asked.
+
+  - SIGN FLIPS track two KNOWN, a priori causes (dataset properties, not failures):
+      * negation: sp_en_trans <-> neg_sp_en_trans AUROC ~0.001/0.000 (CLEAN flip).
+      * logical complement: larger_than <-> smaller_than ~0.003/0.020 (CLEAN flip).
+
+  - THE RESIDUAL OPEN QUESTION lives in the 0.3-0.7 band (8 cells, MM), where
+    signal genuinely DEGRADES rather than inverting:
+      * cities <-> neg_cities: 0.417/0.345 (negation degrades cities, unlike the
+        clean inversion it causes for translation — Task B investigates whether
+        this is a statement-type property or a layer-13 slice artifact).
+      * factual -> larger_than specifically weak (cities->larger 0.641,
+        sp_en->larger 0.517), while ->smaller_than transfers cleanly (0.92-0.99).
+        Asymmetry within the numeric pair; parked.
+
+  - TASK B (results/negation_by_layer.json) — is the negation asymmetry a
+    layer-13 artifact? Swept all 26 layers, 4 directed AUROC pairs + cosine
+    between A-trained and B-trained directions.
+      * BOTH negation pairs trace the SAME rotation: antipodal (early) ->
+        orthogonal (late), matching M&T's documented negation rotation. (We see
+        antipodal->orthogonal only, NOT M&T's later re-aligning, within 26 layers.)
+      * They differ in RATE: factual (cities) negation rotates EARLIER than
+        translation. Cosine shows a SUSTAINED gap L4-17 (e.g. L8 -0.47 vs -0.60,
+        L11 -0.33 vs -0.61, L13 -0.02 vs -0.42), not a narrow window. AUROC makes
+        it look narrow only because AUROC saturates near 0 until cosine nears
+        orthogonal, then swings fast. COSINE is the honest measure here.
+      * VERDICT: the strong claim "negation cleanly inverts translation but
+        DEGRADES cities as a statement-type property" does NOT survive the sweep.
+        At L8-11 BOTH pairs cleanly invert (no asymmetry). The real result is the
+        weaker one: factual-negation rotates to orthogonal at earlier depth than
+        translation-negation. Killed my own most-interesting claim; correct call.
+
+  - LAYER-ROBUSTNESS CHECK (results/transfer_by_layer.json) — layer 13 was the
+    argmax of a SATURATED metric (in-dist acc all >0.976 across L11-17), so re-ran
+    the full transfer analysis across the plateau L11-17:
+      * Cross-topic transfer (aff excl complements) is ROBUST: MM 0.72-0.90,
+        LR 0.81-0.90 across the whole plateau. L13's 0.84/0.88 is mid-pack, NOT
+        cherry-picked. The M&T core reproduction does not depend on layer choice.
+      * Bimodal banded structure ROBUST too (~6-9 clean transfers, ~6-9 clean
+        inversions at every plateau layer).
+      * The ONE layer-contingent cell is cities->neg_cities: 0.006 (clean
+        inversion) at L11 -> 0.417 (degraded) at L13. And L13 is the GLOBAL
+        cosine extremum (closest to orthogonal, -0.023) for cities<->neg_cities
+        across all 26 layers — i.e. the accuracy-selected layer is coincidentally
+        the single WORST layer for cities-negation transfer. This is the residual
+        "degraded" band from Task A: a rotation-phase artifact, now explained.
+      * Transfer actually peaks ~L15; an accuracy-selected layer differs
+        marginally from a transfer-selected one, but no conclusion changes.
+
+REVISED H1 CONCLUSION (replaces the earlier premature negative):
+  At Gemma-2-2B the truth direction transfers RELIABLY within sign-consistent
+  families (cross-topic signed AUROC ~0.84 MM / ~0.88 LR, no oracle, ROBUST
+  across plateau layers 11-17) and INVERTS PREDICTABLY across negation and
+  logical complementarity. Failures are structured and interpretable, not noise.
+  Negation is a depth-dependent ROTATION (antipodal->orthogonal), faster for
+  factual than translation statements; the layer-13 "cities-negation degrades"
+  appearance is a slice of that rotation, not a statement-type property. The bias
+  does not transfer, so threshold-free / centered eval is required. LR and MM
+  transfer comparably.
+  STANDING CAVEATS: primarily layer 13 (headline verified robust L11-17),
+  Gemma-2-2B only, laptop MPS numbers.
+
+--------------------------------------------------------------------------------
+6. KEY DECISIONS / GOTCHAS TO REMEMBER
+--------------------------------------------------------------------------------
+- Probes are torch nn.Modules (not sklearn) — the README was updated to match.
+- LR defaults under-train; always pass lr=1e-2, epochs=2000.
+- AUROC is the honest transfer metric here; raw accuracy is confounded by bias
+  transfer on distribution shift. Always sanity-check exact-0.500 cells.
+- Centering: per-dataset self-centering, label-free, at eval time. The
+  mean_offset-in-cache mechanism is the wrong abstraction; caches stay raw.
+- MM direction is causally-motivated; LR may be nuisance-contaminated — the point
+  of H2. cos(mm,lr) ~0.77 in-distribution is the thread linking H1 and H2.
+- Layer sweep uses MM for SELECTION (its direction is what H2 leans on); LR curve
+  recorded for comparison.
+
+--------------------------------------------------------------------------------
+7. NEXT STEPS (in order)  — 4-task analysis block, stop after each for review
+--------------------------------------------------------------------------------
+[Task A] DONE — signed vs sign-folded metrics separated; banded counts; a-priori
+    complement exclusion; headline cross-topic transfer 0.84/0.88 signed. See
+    results/transfer.json (keys tagged _signed_mean / _SIGN_ORACLE).
+
+[Task B] DONE — negation asymmetry is a layer-13 slice of a depth-dependent
+    rotation (both pairs antipodal->orthogonal, factual faster). Strong claim
+    killed; rate-difference claim stands. results/negation_by_layer.json.
+
+[Task B.5] DONE — layer-robustness check across plateau L11-17. Cross-topic
+    transfer headline ROBUST (0.72-0.90 MM / 0.81-0.90 LR); bimodal structure
+    robust; only cities->neg_cities is layer-contingent (L13 = global negation
+    extremum). results/transfer_by_layer.json.
+
+[Task C] DONE + FIXED (results/combined_negation.json, scripts/03b_combined_negation.py)
+    FIRST PASS WAS INVALID: own-negation cells were TRAIN-ON-TEST (all rows in
+    training) -> the 1.000s were meaningless; and MM cross-topic 0.000->0.465 was
+    reported as +0.464 GAIN when it is actually INFORMATION COLLAPSE (folded
+    1.000->0.601). Redone with HELD-OUT 20% split, signed+folded, cosine mechanism
+    check, at layers 11/13/15.
+    VALID FINDINGS:
+      * Own-negation (HELD-OUT now): combined training -> 1.000 for BOTH probes at
+        all layers. Real M&T reproduction (fixes own negation).
+      * Cross-topic EASY dir (sp_en+neg_sp->neg_cities): both succeed (0.98-1.00).
+      * Cross-topic HARD dir (cities+neg_cities->neg_sp_en_trans, baseline PERFECTLY
+        INVERTED 0.000): LR SUCCEEDS at L11/13/15 (signed 0.838/0.824/0.654), MM
+        FAILS at all three (signed never usable; folded collapses to 0.601 at L13,
+        or stays inverted 0.04-0.14 at L11/L15). => "LR > MM on cross-topic negation
+        generalization" SURVIVES the layer spot-check = a real finding.
+      * MECHANISM CONFIRMED (L13): theta_combo_mm = ~45deg AVERAGE of the two
+        orthogonal constituent directions (cos combo.cities 0.741, combo.neg_cities
+        0.653, cities.neg_cities -0.023). MM can ONLY produce this average (balanced
+        concat is algebraically 1/2(theta_A+theta_B)); when constituents are
+        orthogonal the average is good for neither. LR is unconstrained -> searches
+        a jointly-separating direction. Precise theory-grounded account, NOT "LR
+        more flexible." (Collapse is L13-specific; off-13 MM retains info but stays
+        inverted.)
+    H1 COMPLETE: cross-topic transfer reproduces M&T (robust); combined training
+    fixes own-negation (both probes); MM's mean-diff constraint makes it fail
+    hard cross-topic negation where LR succeeds (mechanism understood).
+
+[Task D] DONE (results/leakage_check.json, scripts/aux_leakage_check.py) —
+    NO LEAKAGE. Zero exact and zero near-duplicate (lowercased/de-punctuated)
+    overlap between train and test for all 6 datasets under seed 0. The LR 1.0000
+    in-distribution accuracies are genuine, not leakage.
+    CAVEAT: sp_en_trans and neg_sp_en_trans each contain 3 duplicate strings in
+    the full dataset; under seed 0 both copies land on the same split side (no
+    straddle), but a DIFFERENT seed could straddle -> dedupe the translation sets
+    before any re-seeding robustness run.
+
+    => 4-TASK ANALYSIS BLOCK COMPLETE (A signed/folded, B negation rotation,
+       B.5 layer robustness, C combined negation, D leakage). H1 fully worked.
+
+[MECHANISM = POTENTIAL CONTRIBUTION] (results/negation_mechanism.json,
+    results/prereg_9b_prediction.json, scripts/aux_negation_mechanism.py)
+    PAPER VERIFIED (arXiv:2310.06824 HTML): M&T Section 7.1 explicitly flags as an
+    OPEN QUESTION why MM combined-training on cities+neg_cities generalized poorly
+    at 70B while larger+smaller generalized well. Fig 3: larger/smaller antipodal
+    at 13B -> common direction at 70B. Fig 3c: datasets<->negations ~orthogonal.
+    (Read via summarizer; structural claims confirmed, wording near-verbatim.)
+
+    EXACTLY PROVABLE (identity only):
+      * Balanced concat => theta_combo = 1/2(theta_A + theta_B) EXACTLY, so the
+        combined-MM SCORE is the average of constituents' scores:
+        theta_combo.x = 1/2(theta_A.x + theta_B.x). THAT IS ALL that is provable.
+      * Confirmed at 2B/L13: cos(combo,cities)=0.741, cos(combo,neg_cities)=0.653,
+        straddling 1/sqrt(2)=0.707 for orthogonal constituents (cos_A_B=-0.023).
+    EMPIRICAL (motivated by the identity, NOT derived; AUROC is nonlinear in scores):
+      * In-distribution PROTECTED: native constituent correct-sign + AUROC saturates
+        => combined MM works in-dist regardless of cos(A,B).
+      * Cross-topic FAILS by SIGN-CANCELLATION: cities+neg_cities->neg_sp averages
+        cities->neg_sp (inverted 0.000) with neg_cities->neg_sp (aligned 0.979) =>
+        cancel => 0.399. LR isn't the average -> finds joint direction -> 0.824.
+      * PREDICTED (not proven): combined-MM cross-dataset generalization increases
+        with cos(theta_A, theta_B). Empirical, to be tested at 9B.
+
+    !! PAPER READ FROM ACTUAL PDF (pypdf). Real Table 2 = NIE. MM rows
+    [13Bf->t, 13Bt->f, 70Bf->t, 70Bt->f]:
+      cities .77/.90/.58/.89 ; cities+neg_cities .85/.97/.81/.95 ;
+      larger_than .71/.79/.67/1.01 ; larger+smaller .26/.53/.66/1.03 ;
+      likely .70/.54/.68/.27.
+    THE PRECISE OPEN PUZZLE is the paragraph before 7.1 (p9), NOT the imprecise
+    7.1 sentence (which literally reads 'poorly poorly' and does not match Table 2
+    at 70B where cities+neg .81/.95 is NOT poor):
+      "Training on datasets and their opposites helps for cities but not for
+       larger_than [NIE] ... surprising, considering larger+smaller are MORE
+       ACCURATE on sp_en_trans than larger alone (App D)."
+      => a CLASSIFICATION-vs-NIE DISSOCIATION: combined training improves
+      larger+smaller CLASSIFICATION but HURTS its NIE (13B .71/.79 -> .26/.53).
+
+    MECHANISM vs the dissociation (this is the potential contribution):
+      * Classification side (SHOWN at 2B): theta_combo = 1/2(theta_A+theta_B); for
+        antipodal constituents (larger+smaller, cos_AB -0.62) theta_combo is a
+        degenerate small-norm average that STILL classifies fine because AUROC
+        saturates on rank (2B own-held-out 0.99).
+      * NIE side (CANDIDATE, needs measuring): the same degenerate theta_combo,
+        normalized as an INTERVENTION vector, is causally wrong -> poor NIE. So
+        combined training improves classification while hurting NIE = exactly M&T's
+        dissociation. Confirm by running the NIE experiment (below).
+
+    INTERVENTION EXPERIMENT IS LOW DESIGN RISK (correction to earlier filing): M&T
+    Sec 6.1 fully specifies it (few-shot 'This statement is: TRUE/FALSE'; theta
+    normalized so p(mu-+theta)=p(mu+); add theta to false / subtract from true at
+    group-(b) hidden state; explicit NIE formula). Documented replication, NOT a
+    contestable artifact like induced_lies.csv.
+
+    POSSIBLE NO-70B CLOSURE: score-averaging identity is scale-free; M&T Fig 3
+    gives 70B geometry; Table 2 gives 70B NIE. If 2B NIE experiment shows
+    combined-MM NIE tracks constituent alignment, mechanism + their reported
+    geometry predicts their reported NIE -> no 70B run strictly required.
+
+    INDEPENDENT REPRODUCTIONS OF M&T (cross-checks):
+      * Task B (cities/neg rotate antipodal->orthogonal with depth) = M&T App C.
+      * Task C (cities+neg improves generalization to neg_sp) = M&T p7.
+
+    FALSIFIED sub-claim (do NOT repeat): "antipodal -> MM fails IN-DISTRIBUTION."
+    larger+smaller combined MM scored 0.98-1.00 on own held-out despite cos_AB
+    -0.52..-0.71 (pairs not perfectly antipodal; AUROC saturates). In-dist is
+    protected; only cross-topic exposes the averaging failure.
+
+    PRE-REGISTERED 9B PREDICTION (results/prereg_9b_prediction.json, logged BEFORE
+    any 9B run): combined-MM cross-dataset generalization increases monotonically
+    with cos(theta_A,theta_B); LR much less sensitive; at 9B expect
+    cos(larger,smaller) to rise toward alignment (per M&T scale trend) while
+    cos(cities,neg_cities) stays ~orthogonal; MM<->LR gap shrinks iff that cos
+    rises. Falsification criteria recorded.
+    2B ANCHOR (L13): cos_AB cities/neg -0.023, sp_en/neg -0.420, larger/smaller
+    -0.617; all < 0, so the aligned regime M&T see at 70B needs the 9B run to reach.
+
+PRIORITY / ORDERING (revised): read paper (DONE) -> 2B NIE experiment -> 9B ->
+H2 optional.
+
+  STEP 1 [DONE - NON-CONFIRMING] 2B NIE experiment ran (results/nie_intervention.json,
+  scripts/aux_nie_intervention.py; full 352 sp_en_trans statements, layer 13).
+    RESULT (NIE f->t / t->f): larger_than 0.028/0.027; larger+smaller 0.039/0.024;
+    cities 0.299/0.352; cities+neg_cities 0.189/0.205. Baseline PD+ -0.065 (true),
+    PD- -0.806 (false).
+    VERDICT: does NOT reproduce M&T's dissociation at 2B, for a clear reason:
+      * larger_than is NOT causal for sp_en_trans at 2B (NIE ~0.03, cos to sp_en
+        truth dir ~0.002; matches its ~0.55 classification transfer). So the
+        ANTIPODAL test (larger+smaller degradation) has NO baseline to degrade from
+        -- it's UNTESTABLE at 2B on this test set.
+      * cities+neg_cities (orthogonal) NIE is MILDLY LOWER than cities alone
+        (0.19 vs 0.30), cos->test 0.434->0.399: a weak classification-vs-NIE
+        dissociation (classification stays ~1.0, NIE drops) but in the ORTHOGONAL
+        case and mild -- not the clean antipodal collapse.
+      * CAVEAT: readout weak (PD+ ~0; 2B base model, 2-shot) -> low noisy NIE
+        ceiling. But larger_than's ~0 causality is DIRECTIONAL (cos 0.002), not a
+        readout artifact.
+    IMPLICATION: the "no-70B closure" hope FAILS -- 2B lacks the causal
+    cross-transfer M&T had at 13B/70B, so the mechanism's causal prediction is
+    UNTESTED (not confirmed, not cleanly refuted) at 2B.
+    WITHIN-2B OPTION to actually test the antipodal case: re-run NIE on a test set
+    where larger_than IS causal at 2B (e.g. cities; larger->cities classif transfer
+    0.88), giving larger+smaller a nonzero baseline to degrade from.
+
+  STEP 1b (SUPERSEDED framing) -- original 2B NIE plan. LOW design risk (documented
+  replication of M&T Sec 6.1); ran as above.
+    * few-shot prompt: two labeled examples, then 's. This statement is:' and read
+      P(TRUE) vs P(FALSE) on the next token.
+    * theta normalized so p(mu- + theta) = p(mu+) (adding theta maps avg-false ->
+      avg-true in probe space).
+    * for false statements ADD theta at the group-(b) hidden state (end-of-stmt
+      token) at the chosen layer; for true SUBTRACT; measure change in
+      P(TRUE)-P(FALSE); compute NIE per M&T's formula.
+    * PREDICTION: combined-MM NIE tracks constituent alignment cos(theta_A,theta_B).
+      Antipodal pair larger+smaller -> degenerate theta_combo -> LOW NIE despite
+      fine classification (reproduces M&T's dissociation). Compare theta_single vs
+      theta_combo NIE for larger_than and cities. Runnable on 2B (MPS), fwd-only.
+
+  STEP 2 -- 9B RUN: tests the registered prediction at scale, removes 2 of 3
+  standing caveats (2B-only, laptop-MPS). Mechanical, no design risk. Needs cluster.
+
+  STEP 3 -- H2 (induced-lie test): NOW OPTIONAL. Was the planned contribution when
+  H1 was expected to be a clean replication; H1 instead produced the stronger
+  mechanistic result with none of the belief-vs-intent contestability. Dropping H2
+  is a defensible scoping decision, not a retreat. If pursued, induced_lies.csv is
+  the single most contestable artifact and must be designed unhurried.
+
+  9B RUN CHECKLIST (mechanical; on a cluster):
+    - set MODEL_NAME="gemma-2-9b", device="cuda", dtype bf16 in the 01 config.
+    - accept gemma-2-9b license on HF (token already works).
+    - re-run 01 (extract+sweep+commit), 02, 03, 03b, and the aux scripts.
+    - d_model=3584, n_layers=42 for 9B (vs 2304/26 at 2B).
+    - then evaluate prereg_9b_prediction.json P1-P4; record confirmed/falsified.
+
+[later] BUILD data/induced_lies.csv (H2 prerequisite) — the USER's hand, not the
+    agent's:
+    Hand-construct prompts that lead the model to ASSERT statements (both true and
+    false), with columns for actual truth value AND asserted position. Keep
+    clearly separate from base data.
+
+[3] WRITE scripts/04_induced_lie_test.py (H2, the contribution):
+    Using probes from 02 (no retrain), extract activations while the model asserts
+    each statement; record whether MM and LR track ACTUAL TRUTH vs ASSERTED
+    POSITION. Report the LR-vs-MM split. Interpret with the belief-vs-intent
+    caveat from the README (this is NOT a deception detector).
+
+[4] FINAL RUN on Gemma-2-9B (cluster):
+    Re-run 01-04 with MODEL_NAME="gemma-2-9b", device="cuda". Code is identical.
+    Expect cleaner transfer (effect sharpens with scale) and the whitened-
+    alignment theory check becomes meaningful if n approaches/exceeds d.
+
+[5] Update README "Results" section once H1 (with negations) and H2 are in;
+    revise hypothesis language to reflect what was actually found.
+================================================================================

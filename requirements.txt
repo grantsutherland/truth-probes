@@ -1,0 +1,9 @@
+# Core stack for the truth-probes pipeline. Top-level deps pinned to the
+# versions the results were produced with (see results/*.json) for
+# reproducibility; pip resolves the transitive dependencies.
+torch==2.13.0
+transformer-lens==3.5.1
+transformers==5.14.1
+pandas==3.0.3
+numpy==2.5.1
+huggingface-hub==1.24.0   # gated Gemma-2 download (hf auth login)

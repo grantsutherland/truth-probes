@@ -1,0 +1,49 @@
+{
+  "split_ratio": 0.8,
+  "seed": 0,
+  "per_dataset": {
+    "cities": {
+      "n_train": 1197,
+      "n_test": 299,
+      "exact_overlap_test_in_train": 0,
+      "near_dup_overlap_test_in_train": 0,
+      "duplicate_strings_in_full_dataset": 0
+    },
+    "neg_cities": {
+      "n_train": 1197,
+      "n_test": 299,
+      "exact_overlap_test_in_train": 0,
+      "near_dup_overlap_test_in_train": 0,
+      "duplicate_strings_in_full_dataset": 0
+    },
+    "sp_en_trans": {
+      "n_train": 283,
+      "n_test": 71,
+      "exact_overlap_test_in_train": 0,
+      "near_dup_overlap_test_in_train": 0,
+      "duplicate_strings_in_full_dataset": 3
+    },
+    "neg_sp_en_trans": {
+      "n_train": 283,
+      "n_test": 71,
+      "exact_overlap_test_in_train": 0,
+      "near_dup_overlap_test_in_train": 0,
+      "duplicate_strings_in_full_dataset": 3
+    },
+    "larger_than": {
+      "n_train": 1584,
+      "n_test": 396,
+      "exact_overlap_test_in_train": 0,
+      "near_dup_overlap_test_in_train": 0,
+      "duplicate_strings_in_full_dataset": 0
+    },
+    "smaller_than": {
+      "n_train": 1584,
+      "n_test": 396,
+      "exact_overlap_test_in_train": 0,
+      "near_dup_overlap_test_in_train": 0,
+      "duplicate_strings_in_full_dataset": 0
+    }
+  },
+  "verdict": "NO LEAKAGE \u2014 no statement appears in both train and test (exact or near-duplicate) for any dataset. The 1.0000 in-distribution accuracies can be reported with confidence."
+}

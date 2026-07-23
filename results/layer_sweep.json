@@ -1,0 +1,597 @@
+{
+  "model_name": "gemma-2-2b",
+  "sweep_datasets": [
+    "cities",
+    "neg_cities",
+    "sp_en_trans",
+    "neg_sp_en_trans",
+    "larger_than",
+    "smaller_than"
+  ],
+  "token_pos": -1,
+  "split_ratio": 0.8,
+  "seed": 0,
+  "selection_probe": "mm",
+  "lr_hparams": {
+    "lr": 0.01,
+    "epochs": 2000,
+    "weight_decay": 0.01
+  },
+  "chosen_layer": 13,
+  "mm_accuracy_by_layer": {
+    "0": {
+      "mean": 0.5876120279232661,
+      "per_dataset": {
+        "cities": 0.48494982719421387,
+        "neg_cities": 0.4949832856655121,
+        "sp_en_trans": 0.4647887349128723,
+        "neg_sp_en_trans": 0.4647887349128723,
+        "larger_than": 0.808080792427063,
+        "smaller_than": 0.808080792427063
+      }
+    },
+    "1": {
+      "mean": 0.5815494507551193,
+      "per_dataset": {
+        "cities": 0.5351170301437378,
+        "neg_cities": 0.4715718924999237,
+        "sp_en_trans": 0.4647887349128723,
+        "neg_sp_en_trans": 0.4647887349128723,
+        "larger_than": 0.7853535413742065,
+        "smaller_than": 0.7676767706871033
+      }
+    },
+    "2": {
+      "mean": 0.6218849867582321,
+      "per_dataset": {
+        "cities": 0.6856187582015991,
+        "neg_cities": 0.5652173757553101,
+        "sp_en_trans": 0.49295774102211,
+        "neg_sp_en_trans": 0.4647887349128723,
+        "larger_than": 0.7601010203361511,
+        "smaller_than": 0.7626262903213501
+      }
+    },
+    "3": {
+      "mean": 0.7463284333546957,
+      "per_dataset": {
+        "cities": 0.8528428077697754,
+        "neg_cities": 0.8093645572662354,
+        "sp_en_trans": 0.5211267471313477,
+        "neg_sp_en_trans": 0.577464759349823,
+        "larger_than": 0.8787878751754761,
+        "smaller_than": 0.8383838534355164
+      }
+    },
+    "4": {
+      "mean": 0.7899848620096842,
+      "per_dataset": {
+        "cities": 0.8394649028778076,
+        "neg_cities": 0.7892976403236389,
+        "sp_en_trans": 0.6760563254356384,
+        "neg_sp_en_trans": 0.6901408433914185,
+        "larger_than": 0.8611111044883728,
+        "smaller_than": 0.8838383555412292
+      }
+    },
+    "5": {
+      "mean": 0.8417960206667582,
+      "per_dataset": {
+        "cities": 0.8428093791007996,
+        "neg_cities": 0.8193979859352112,
+        "sp_en_trans": 0.8450704216957092,
+        "neg_sp_en_trans": 0.8591549396514893,
+        "larger_than": 0.8434343338012695,
+        "smaller_than": 0.8409090638160706
+      }
+    },
+    "6": {
+      "mean": 0.8773038685321808,
+      "per_dataset": {
+        "cities": 0.8227424621582031,
+        "neg_cities": 0.8428093791007996,
+        "sp_en_trans": 0.9014084339141846,
+        "neg_sp_en_trans": 0.9014084339141846,
+        "larger_than": 0.8939393758773804,
+        "smaller_than": 0.9015151262283325
+      }
+    },
+    "7": {
+      "mean": 0.9525171319643656,
+      "per_dataset": {
+        "cities": 0.9264214038848877,
+        "neg_cities": 0.95652174949646,
+        "sp_en_trans": 0.9436619877815247,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 0.9671717286109924,
+        "smaller_than": 0.9494949579238892
+      }
+    },
+    "8": {
+      "mean": 0.951652854681015,
+      "per_dataset": {
+        "cities": 0.9331103563308716,
+        "neg_cities": 0.9698996543884277,
+        "sp_en_trans": 0.9436619877815247,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 0.9494949579238892,
+        "smaller_than": 0.941919207572937
+      }
+    },
+    "9": {
+      "mean": 0.9430336058139801,
+      "per_dataset": {
+        "cities": 0.9264214038848877,
+        "neg_cities": 0.9732441306114197,
+        "sp_en_trans": 0.9436619877815247,
+        "neg_sp_en_trans": 0.9436619877815247,
+        "larger_than": 0.941919207572937,
+        "smaller_than": 0.9292929172515869
+      }
+    },
+    "10": {
+      "mean": 0.9512934386730194,
+      "per_dataset": {
+        "cities": 0.9498327970504761,
+        "neg_cities": 0.9899665713310242,
+        "sp_en_trans": 0.9436619877815247,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 0.9267676472663879,
+        "smaller_than": 0.9116161465644836
+      }
+    },
+    "11": {
+      "mean": 0.9725891451040903,
+      "per_dataset": {
+        "cities": 0.9899665713310242,
+        "neg_cities": 1.0,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 0.9444444179534912,
+        "smaller_than": 0.9292929172515869
+      }
+    },
+    "12": {
+      "mean": 0.981427530447642,
+      "per_dataset": {
+        "cities": 0.9899665713310242,
+        "neg_cities": 1.0,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 0.9797979593276978,
+        "smaller_than": 0.9469696879386902
+      }
+    },
+    "13": {
+      "mean": 0.9896784623463949,
+      "per_dataset": {
+        "cities": 0.9799330830574036,
+        "neg_cities": 1.0,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 0.997474730014801,
+        "smaller_than": 0.9747474789619446
+      }
+    },
+    "14": {
+      "mean": 0.9885936677455902,
+      "per_dataset": {
+        "cities": 0.9799330830574036,
+        "neg_cities": 1.0,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 0.9797979593276978
+      }
+    },
+    "15": {
+      "mean": 0.9863640169302622,
+      "per_dataset": {
+        "cities": 0.9698996543884277,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 0.997474730014801,
+        "smaller_than": 0.9823232293128967
+      }
+    },
+    "16": {
+      "mean": 0.9820187290509542,
+      "per_dataset": {
+        "cities": 0.9665551781654358,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.9718309640884399,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 0.9898989796638489,
+        "smaller_than": 0.9671717286109924
+      }
+    },
+    "17": {
+      "mean": 0.975894699494044,
+      "per_dataset": {
+        "cities": 0.95652174949646,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.9718309640884399,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 0.9747474789619446,
+        "smaller_than": 0.9696969985961914
+      }
+    },
+    "18": {
+      "mean": 0.9574287434418997,
+      "per_dataset": {
+        "cities": 0.9498327970504761,
+        "neg_cities": 0.9899665713310242,
+        "sp_en_trans": 0.9577465057373047,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 0.9065656661987305,
+        "smaller_than": 0.9545454382896423
+      }
+    },
+    "19": {
+      "mean": 0.9430537720521291,
+      "per_dataset": {
+        "cities": 0.9498327970504761,
+        "neg_cities": 0.9899665713310242,
+        "sp_en_trans": 0.9295774698257446,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 0.8636363744735718,
+        "smaller_than": 0.939393937587738
+      }
+    },
+    "20": {
+      "mean": 0.9397280613581339,
+      "per_dataset": {
+        "cities": 0.9498327970504761,
+        "neg_cities": 0.9866220951080322,
+        "sp_en_trans": 0.9295774698257446,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 0.8611111044883728,
+        "smaller_than": 0.939393937587738
+      }
+    },
+    "21": {
+      "mean": 0.9447072446346283,
+      "per_dataset": {
+        "cities": 0.9464883208274841,
+        "neg_cities": 0.9866220951080322,
+        "sp_en_trans": 0.9436619877815247,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 0.8636363744735718,
+        "smaller_than": 0.941919207572937
+      }
+    },
+    "22": {
+      "mean": 0.939454972743988,
+      "per_dataset": {
+        "cities": 0.953177273273468,
+        "neg_cities": 0.9765886068344116,
+        "sp_en_trans": 0.9295774698257446,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 0.8611111044883728,
+        "smaller_than": 0.9444444179534912
+      }
+    },
+    "23": {
+      "mean": 0.9296495715777079,
+      "per_dataset": {
+        "cities": 0.9498327970504761,
+        "neg_cities": 0.9665551781654358,
+        "sp_en_trans": 0.9295774698257446,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 0.8459596037864685,
+        "smaller_than": 0.9141414165496826
+      }
+    },
+    "24": {
+      "mean": 0.9097567896048228,
+      "per_dataset": {
+        "cities": 0.953177273273468,
+        "neg_cities": 0.9799330830574036,
+        "sp_en_trans": 0.8591549396514893,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 0.8282828330993652,
+        "smaller_than": 0.8661616444587708
+      }
+    },
+    "25": {
+      "mean": 0.9038682778676351,
+      "per_dataset": {
+        "cities": 0.9632107019424438,
+        "neg_cities": 0.9331103563308716,
+        "sp_en_trans": 0.8732394576072693,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 0.8181818127632141,
+        "smaller_than": 0.8636363744735718
+      }
+    }
+  },
+  "lr_accuracy_by_layer": {
+    "0": {
+      "mean": 0.6610915511846542,
+      "per_dataset": {
+        "cities": 0.5518394708633423,
+        "neg_cities": 0.49832776188850403,
+        "sp_en_trans": 0.5070422291755676,
+        "neg_sp_en_trans": 0.5633803009986877,
+        "larger_than": 0.9015151262283325,
+        "smaller_than": 0.9444444179534912
+      }
+    },
+    "1": {
+      "mean": 0.7762228747208914,
+      "per_dataset": {
+        "cities": 0.8762542009353638,
+        "neg_cities": 0.8929765820503235,
+        "sp_en_trans": 0.47887325286865234,
+        "neg_sp_en_trans": 0.4647887349128723,
+        "larger_than": 0.9747474789619446,
+        "smaller_than": 0.9696969985961914
+      }
+    },
+    "2": {
+      "mean": 0.812921017408371,
+      "per_dataset": {
+        "cities": 0.8628762364387512,
+        "neg_cities": 0.8896321058273315,
+        "sp_en_trans": 0.6056337952613831,
+        "neg_sp_en_trans": 0.577464759349823,
+        "larger_than": 0.9722222089767456,
+        "smaller_than": 0.9696969985961914
+      }
+    },
+    "3": {
+      "mean": 0.8505459229151408,
+      "per_dataset": {
+        "cities": 0.9364548325538635,
+        "neg_cities": 0.9331103563308716,
+        "sp_en_trans": 0.6197183132171631,
+        "neg_sp_en_trans": 0.6619718074798584,
+        "larger_than": 0.9747474789619446,
+        "smaller_than": 0.9772727489471436
+      }
+    },
+    "4": {
+      "mean": 0.9270624617735544,
+      "per_dataset": {
+        "cities": 0.9364548325538635,
+        "neg_cities": 0.9364548325538635,
+        "sp_en_trans": 0.8591549396514893,
+        "neg_sp_en_trans": 0.8732394576072693,
+        "larger_than": 0.9797979593276978,
+        "smaller_than": 0.9772727489471436
+      }
+    },
+    "5": {
+      "mean": 0.9536193013191223,
+      "per_dataset": {
+        "cities": 0.9397993087768555,
+        "neg_cities": 0.9364548325538635,
+        "sp_en_trans": 0.9436619877815247,
+        "neg_sp_en_trans": 0.9295774698257446,
+        "larger_than": 0.9873737096786499,
+        "smaller_than": 0.9848484992980957
+      }
+    },
+    "6": {
+      "mean": 0.9708240330219269,
+      "per_dataset": {
+        "cities": 0.95652174949646,
+        "neg_cities": 0.95652174949646,
+        "sp_en_trans": 0.9436619877815247,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 0.9898989796638489,
+        "smaller_than": 0.9924242496490479
+      }
+    },
+    "7": {
+      "mean": 0.9833827316761017,
+      "per_dataset": {
+        "cities": 0.9866220951080322,
+        "neg_cities": 0.9866220951080322,
+        "sp_en_trans": 0.9577465057373047,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 0.997474730014801,
+        "smaller_than": 1.0
+      }
+    },
+    "8": {
+      "mean": 0.9884984393914541,
+      "per_dataset": {
+        "cities": 0.9832776188850403,
+        "neg_cities": 0.9899665713310242,
+        "sp_en_trans": 0.9718309640884399,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "9": {
+      "mean": 0.9884984393914541,
+      "per_dataset": {
+        "cities": 0.9832776188850403,
+        "neg_cities": 0.9899665713310242,
+        "sp_en_trans": 0.9718309640884399,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "10": {
+      "mean": 0.9941903352737427,
+      "per_dataset": {
+        "cities": 0.9966555237770081,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "11": {
+      "mean": 1.0,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 1.0,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "12": {
+      "mean": 1.0,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 1.0,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "13": {
+      "mean": 0.999442587296168,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "14": {
+      "mean": 0.999442587296168,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "15": {
+      "mean": 0.9970951676368713,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "16": {
+      "mean": 0.9970951676368713,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "17": {
+      "mean": 0.9947477479775747,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "18": {
+      "mean": 0.9947477479775747,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "19": {
+      "mean": 0.9947477479775747,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "20": {
+      "mean": 0.9941903352737427,
+      "per_dataset": {
+        "cities": 0.9966555237770081,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "21": {
+      "mean": 1.0,
+      "per_dataset": {
+        "cities": 1.0,
+        "neg_cities": 1.0,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 1.0,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "22": {
+      "mean": 0.9936329225699106,
+      "per_dataset": {
+        "cities": 0.9899665713310242,
+        "neg_cities": 1.0,
+        "sp_en_trans": 1.0,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "23": {
+      "mean": 0.9930755098660787,
+      "per_dataset": {
+        "cities": 0.9933110475540161,
+        "neg_cities": 0.9933110475540161,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "24": {
+      "mean": 0.991285502910614,
+      "per_dataset": {
+        "cities": 0.9933110475540161,
+        "neg_cities": 0.9966555237770081,
+        "sp_en_trans": 0.9718309640884399,
+        "neg_sp_en_trans": 0.98591548204422,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    },
+    "25": {
+      "mean": 0.991842915614446,
+      "per_dataset": {
+        "cities": 0.9933110475540161,
+        "neg_cities": 1.0,
+        "sp_en_trans": 0.98591548204422,
+        "neg_sp_en_trans": 0.9718309640884399,
+        "larger_than": 1.0,
+        "smaller_than": 1.0
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Virtual environment
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Large / regenerable artifacts — recreate with scripts/01 then scripts/02.
+# (activation caches are ~3.5GB; probes are binary, model-specific state dicts)
+results/activations/
+results/probes/
+
+# Keep results/*.json (the findings that back the write-up) — they are small
+# and tracked. Do NOT ignore them.

@@ -1,0 +1,147 @@
+================================================================================
+NEXT STEPS  (read cur_state.txt first for full context and results so far)
+================================================================================
+Two things remain: (1) the Gemma-2-9B run [PRIMARY], (2) the H2 induced-lie test
+[OPTIONAL]. H1 is complete on 2B; the mechanistic finding + pre-registered
+prediction (results/prereg_9b_prediction.json) are the strongest thread and the
+9B run is what tests them.
+
+NOTE ON WHAT IS AND ISN'T IN THIS REPO (see .gitignore):
+- Tracked: all code (src/, scripts/), data CSVs (data/), JSON findings
+  (results/*.json), README, cur_state.txt, this file.
+- NOT tracked (regenerate on the cluster): results/activations/ (~3.5GB sweep +
+  single-layer caches) and results/probes/ (binary). Recreate by running
+  scripts/01 then scripts/02. The 2B JSON results are kept for comparison.
+
+================================================================================
+STEP 1 — GEMMA-2-9B RUN  [PRIMARY]
+================================================================================
+Purpose: test the pre-registered predictions at scale and, crucially, run the
+NIE causal experiment where cross-dataset causal transfer should actually exist
+(it did NOT at 2B -- larger_than was not causal for sp_en_trans, so the antipodal
+NIE test was untestable at 2B). 9B also removes two standing caveats (2B-only,
+laptop-MPS).
+
+CLUSTER SETUP
+  1. GPU with >= ~20GB VRAM (Gemma-2-9B bf16 ~18.5GB + activations/overhead).
+  2. python -m venv .venv && source .venv/bin/activate
+  3. pip install -r requirements.txt   (ensure the CUDA torch build is installed;
+     may need the appropriate --index-url for your CUDA version instead of the
+     pinned CPU/MPS torch==2.13.0).
+  4. hf auth login   (token already works for this account)
+  5. Accept the gemma-2-9b license on HF: huggingface.co/google/gemma-2-9b
+  6. Optional: export TRANSFORMERLENS_ALLOW_MPS=1 is NOT needed on CUDA.
+
+CONFIG CHANGES (in each script's CONFIG block)
+  - scripts/01_extract_activations.py: MODEL_NAME = "gemma-2-9b"; DEVICE = None
+    (auto-picks cuda). dtype auto -> bf16 on cuda (activations cast to float32 on
+    the way to disk regardless).
+  - Everything else (layer sweep, datasets, split, seed) unchanged.
+  - Gemma-2-9B facts: d_model = 3584, n_layers = 42 (vs 2304 / 26 at 2B). The
+    chosen layer will differ; the sweep picks it. Nothing hardcodes these numbers
+    (d_model inferred; layers swept), so no other code edits needed.
+  - NOTE: aux scripts hardcode LAYER = 13 (2B's choice). After 01 commits the 9B
+    layer (read results/layer_sweep.json chosen_layer), update LAYER in:
+    aux_negation_by_layer.py (sweeps all layers, fine), aux_transfer_by_layer.py
+    (change the plateau range around the 9B peak), 03b_combined_negation.py
+    (LAYERS list), aux_negation_mechanism.py (LAYERS list),
+    aux_nie_intervention.py (LAYER). Grep for 'LAYER = 13' and '= [11, 13, 15]'.
+
+RUN ORDER (each reads the previous step's cache)
+  1. python scripts/01_extract_activations.py     # extract all 42 layers, sweep,
+       commit chosen layer. Sweep caches will be big (42 x d_model x n) -- ensure
+       disk space. Verify verify_model() prints hook OK first.
+  2. python scripts/02_train_probes.py            # in-dist accuracy + cos(mm,lr)
+  3. python scripts/03_transfer_eval.py           # AUROC transfer matrix (signed
+       + folded + centered); banded counts; aff->aff cross-topic
+  4. python scripts/03b_combined_negation.py      # held-out combined negation
+  5. python scripts/aux_negation_by_layer.py      # negation rotation across layers
+  6. python scripts/aux_transfer_by_layer.py      # transfer robustness across layers
+  7. python scripts/aux_negation_mechanism.py     # cos_AB, norm ratio, own-held-out
+  8. python scripts/aux_whitened_alignment.py     # LR vs whitened MM (now n<<d may
+       differ at 9B; d_model=3584 still > single-dataset n, so likely same story)
+  9. python scripts/aux_leakage_check.py          # should still be clean
+  10. python scripts/aux_nie_intervention.py      # THE causal test (see below)
+
+WHAT TO EVALUATE (record confirmed / refuted in a results/eval_9b.md)
+  Against results/prereg_9b_prediction.json:
+  P1: combined-MM cross-dataset generalization monotone in cos(theta_A,theta_B).
+  P2: LR much less sensitive to cos(theta_A,theta_B) than MM.
+  P3: at 9B, cos(larger,smaller) should be LESS antipodal / more aligned than 2B
+      (M&T Fig3 scale trend 13B antipodal -> 70B common); cos(cities,neg_cities)
+      may stay ~orthogonal OR start aligning in late layers (M&T App C).
+      -> measure with aux_negation_mechanism.py + aux_negation_by_layer.py.
+  P4 / REFINED: NIE degrades when constituents ANTIPODAL, monotone in proximity
+      of cos to -1; DIRECTIONAL not norm (M&T normalize theta). The clean test:
+      does larger_than become causal for sp_en at 9B (nonzero singleton NIE)? If
+      yes, does combined larger+smaller DEGRADE NIE vs larger alone while
+      classification is preserved? That reproduces M&T's dissociation.
+  Also: does the whole transfer picture sharpen (higher signed cross-topic AUROC,
+      cleaner sign structure) at 9B, per "effect sharpens with scale"?
+
+THE NIE EXPERIMENT AT 9B (the key one)
+  - 2B FAILED to test the antipodal prediction because larger_than had ~0 causal
+    effect on sp_en_trans (cos to sp_en truth dir ~0.002; NIE ~0.03). At 9B the
+    causal cross-transfer should exist (M&T see it at 13B/70B).
+  - Check FIRST: run aux_nie_intervention.py and look at the larger_than singleton
+    NIE. If it's now clearly > 0, the antipodal test is live. Then compare
+    larger+smaller (antipodal) vs larger_than (singleton): predict degradation.
+    And cities+neg (should be orthogonal-or-aligning) vs cities: predict little/no
+    degradation.
+  - Also watch the readout: 2B baseline PD+ was only -0.065 (weak; base model,
+    2-shot). If 9B PD+ is clearly positive, the NIE ceiling is higher and cleaner.
+    If still weak, add more few-shot exemplars (FEWSHOT list in the script) --
+    this is a documented M&T knob (calibrated few-shot), not a design risk.
+  - WITHIN-2B fallback already noted (if 9B unavailable): re-run
+    aux_nie_intervention.py with TEST_SET = "cities" (larger->cities classif
+    transfer was 0.88 at 2B, so larger_than may be causal there), giving the
+    antipodal pair a nonzero baseline to degrade from.
+
+AFTER 9B
+  - Update README "Results" section with 2B + 9B numbers; revise hypothesis
+    language to what was actually found. Log everything to cur_state.txt.
+
+================================================================================
+STEP 2 — H2: INDUCED-LIE TEST  [OPTIONAL]
+================================================================================
+Status: OPTIONAL. This was the planned "contribution" back when H1 was expected to
+be a clean replication. H1 instead produced the mechanistic finding above, which
+is stronger and carries none of the belief-vs-intent contestability. Dropping H2
+is a defensible scoping decision. Pursue only if time allows and only with
+unhurried dataset design.
+
+THE HARD PART: data/induced_lies.csv (does NOT exist yet -- must be hand-built).
+  - Goal: prompts that lead the model to ASSERT a statement (true OR false),
+    regardless of its truth, so we can separate the statement's ACTUAL truth value
+    from the model's ASSERTED position.
+  - Suggested columns: statement, actual_truth (0/1), asserted_position (0/1),
+    prompt (the full context that induces the assertion), source_dataset.
+  - Keep it clearly separate from the base M&T data.
+  - THE CONTESTABLE BIT (design carefully, this is why H2 is risky): a prompt that
+    "induces a falsehood" confounds (i) the model KNOWING X is false while
+    asserting it (deception-like) vs (ii) the prompt SHIFTING what the model
+    represents as true (belief change). This setup cannot fully distinguish them
+    -- the write-up MUST say so (see README's belief-vs-intent caveat). Do not
+    over-claim a "deception detector."
+
+THE SCRIPT: scripts/04_induced_lie_test.py (not written yet)
+  - Use the probes SAVED by 02 (data.load_probe), NO retraining.
+  - For each induced-lie item: extract the activation at the SAME layer/token
+    position while the model is asserting the statement (reuse
+    activations.extract_activations on the assertion prompt; take the
+    end-of-statement token of the asserted statement).
+  - Apply BOTH LR and MM probes (use decision_function / forward margins, NOT hard
+    labels -- save the signed margins so magnitude collapse is visible).
+  - Record, per item and per probe, whether the probe output tracks ACTUAL truth
+    or ASSERTED position. Report the LR-vs-MM split explicitly.
+  - Three outcomes are all publishable: tracks actual truth (consistent with the
+    model "knowing"), tracks asserted position (prompt shifted representation), or
+    margin collapses toward zero (representation destabilized). Report which.
+  - Interpret with the belief-vs-intent caveat stated plainly.
+
+CONNECTION TO THE MECHANISM: MM direction is more causally implicated; if MM
+tracks actual truth while LR tracks asserted position under induced falsehood,
+that echoes the H1 finding that MM and LR directions diverge (cos ~0.77) and that
+MM is the causally-relevant one. Worth framing H2 results against H1's MM-vs-LR
+story rather than as a standalone deception probe.
+================================================================================

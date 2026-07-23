@@ -1,0 +1,43 @@
+{
+  "layer": 13,
+  "test_set": "sp_en_trans",
+  "n_test": 352,
+  "baseline": {
+    "PD_plus": -0.06482882950116288,
+    "PD_minus": -0.8058471957390959
+  },
+  "train_sets": {
+    "larger_than": {
+      "NIE_false_to_true": 0.02834330789289493,
+      "NIE_true_to_false": 0.02692457440516423,
+      "PD_plus_star": -0.08478043363852934,
+      "PD_minus_star": -0.7848442840305242,
+      "theta_norm": 18.89237403869629,
+      "cos_theta_to_test_truth_dir": 0.0017255768179893494
+    },
+    "larger_than+smaller_than": {
+      "NIE_false_to_true": 0.038523109211543095,
+      "NIE_true_to_false": 0.0237821978509736,
+      "PD_plus_star": -0.08245187489823862,
+      "PD_minus_star": -0.7773008642887528,
+      "theta_norm": 8.128676414489746,
+      "cos_theta_to_test_truth_dir": 0.18051555752754211
+    },
+    "cities": {
+      "NIE_false_to_true": 0.2993168313015379,
+      "NIE_true_to_false": 0.3523229153914261,
+      "PD_plus_star": -0.32590658065270295,
+      "PD_minus_star": -0.5840479264205153,
+      "theta_norm": 60.09869384765625,
+      "cos_theta_to_test_truth_dir": 0.43413007259368896
+    },
+    "cities+neg_cities": {
+      "NIE_false_to_true": 0.18926962680721582,
+      "NIE_true_to_false": 0.20543959170155746,
+      "PD_plus_star": -0.21706334010443903,
+      "PD_minus_star": -0.6655949261039495,
+      "theta_norm": 39.507930755615234,
+      "cos_theta_to_test_truth_dir": 0.3993563652038574
+    }
+  }
+}
