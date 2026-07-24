@@ -310,6 +310,88 @@ def _probe_path(probe_type, dataset):
 
 
 # --------------------------------------------------------------------------- #
+# Induced-lie activations  (H2 phase 1 saves; phases 2-5 read)
+# --------------------------------------------------------------------------- #
+# Deliberately NOT in DATASETS: that registry drives the H1 pipeline, and this
+# set has no place in a layer sweep or a transfer matrix. It is loaded by name.
+INDUCED_LIES = "induced_lies"
+
+# Row identity that must travel WITH the activations. H2 slices by condition and
+# by frame, and a probe score is meaningless unless row i of the tensor is row i
+# of the CSV — so the cache carries the keys rather than expecting a re-read of
+# the CSV to line up. (It would not, once the filter is retuned at a different
+# threshold and the surviving row set changes.)
+INDUCED_LIES_KEYS = ["base_fact", "city", "statement", "condition", "prompt"]
+
+
+def save_induced_lies(acts, rows, layers, token_pos, model_name):
+    """Cache induced-lie activations, all layers, with row identity attached.
+
+    Args:
+        acts:  Tensor (n, n_layers, d_model).
+        rows:  DataFrame of the surviving CSV rows, IN THE SAME ORDER as `acts`.
+        layers, token_pos, model_name: as in save_sweep.
+    """
+    if acts.shape[0] != len(rows):
+        raise ValueError(
+            f"acts/rows length mismatch: {acts.shape[0]} vs {len(rows)}.")
+    if acts.shape[1] != len(layers):
+        raise ValueError(
+            f"acts layer axis {acts.shape[1]} != len(layers) {len(layers)}.")
+
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    payload = {
+        "version": CACHE_VERSION,
+        "dataset": INDUCED_LIES,
+        "acts": acts.cpu(),
+        # Actual truth of the statement, independent of frame.
+        "labels": torch.tensor(rows["label"].tolist(), dtype=torch.long),
+        # The instruction: 1 = "Say something true.", 0 = "Say something false."
+        # Stored as its own target because the whole experiment is AUROC against
+        # label versus AUROC against this.
+        "frame": torch.tensor((rows["frame"] == "true").astype(int).tolist(),
+                              dtype=torch.long),
+        "layers": list(layers),
+        "token_pos": token_pos,
+        "model_name": model_name,
+        **{k: rows[k].astype(str).tolist() for k in INDUCED_LIES_KEYS},
+    }
+    torch.save(payload, _cache_path(INDUCED_LIES))
+
+
+def load_induced_lies(device=None):
+    """Load induced-lie activations.
+
+    Returns:
+        acts:   Tensor (n, n_layers, d_model), float32.
+        labels: Tensor (n,), float — actual truth.
+        frame:  Tensor (n,), float — 1 if the frame said "true".
+        meta:   dict with layers, token_pos, model_name and the row-identity lists.
+    """
+    path = _cache_path(INDUCED_LIES)
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            f"No induced-lie cache at {path}. Run h2_01_extract.py first.")
+    payload = torch.load(path, map_location=device or "cpu", weights_only=False)
+    if payload.get("version") != CACHE_VERSION:
+        raise ValueError(
+            f"{path} has cache version {payload.get('version')}, "
+            f"expected {CACHE_VERSION}. Re-run extraction.")
+
+    acts = payload["acts"].to(dtype=torch.float32)
+    labels = payload["labels"].to(dtype=torch.float32)
+    frame = payload["frame"].to(dtype=torch.float32)
+    meta = {
+        "dataset": payload["dataset"],
+        "layers": payload["layers"],
+        "token_pos": payload["token_pos"],
+        "model_name": payload["model_name"],
+        **{k: payload[k] for k in INDUCED_LIES_KEYS},
+    }
+    return acts, labels, frame, meta
+
+
+# --------------------------------------------------------------------------- #
 # Splitting and centering  (step 02)
 # --------------------------------------------------------------------------- #
 def train_test_split(acts, labels, ratio=0.8, seed=0):

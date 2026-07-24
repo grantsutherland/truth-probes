@@ -1,0 +1,401 @@
+base_fact,city,statement,label,frame,condition,prompt,model_knows
+Paris-France,Paris,The city of Paris is in France.,1,true,aligned,Say something true. The city of Paris is in France.,1
+Paris-France,Paris,The city of Paris is in Germany.,0,true,conflict,Say something true. The city of Paris is in Germany.,1
+Paris-France,Paris,The city of Paris is in France.,1,false,conflict,Say something false. The city of Paris is in France.,1
+Paris-France,Paris,The city of Paris is in Germany.,0,false,aligned,Say something false. The city of Paris is in Germany.,1
+Tokyo-Japan,Tokyo,The city of Tokyo is in Japan.,1,true,aligned,Say something true. The city of Tokyo is in Japan.,1
+Tokyo-Japan,Tokyo,The city of Tokyo is in China.,0,true,conflict,Say something true. The city of Tokyo is in China.,1
+Tokyo-Japan,Tokyo,The city of Tokyo is in Japan.,1,false,conflict,Say something false. The city of Tokyo is in Japan.,1
+Tokyo-Japan,Tokyo,The city of Tokyo is in China.,0,false,aligned,Say something false. The city of Tokyo is in China.,1
+London-England,London,The city of London is in England.,1,true,aligned,Say something true. The city of London is in England.,1
+London-England,London,The city of London is in France.,0,true,conflict,Say something true. The city of London is in France.,1
+London-England,London,The city of London is in England.,1,false,conflict,Say something false. The city of London is in England.,1
+London-England,London,The city of London is in France.,0,false,aligned,Say something false. The city of London is in France.,1
+Moscow-Russia,Moscow,The city of Moscow is in Russia.,1,true,aligned,Say something true. The city of Moscow is in Russia.,1
+Moscow-Russia,Moscow,The city of Moscow is in Ukraine.,0,true,conflict,Say something true. The city of Moscow is in Ukraine.,1
+Moscow-Russia,Moscow,The city of Moscow is in Russia.,1,false,conflict,Say something false. The city of Moscow is in Russia.,1
+Moscow-Russia,Moscow,The city of Moscow is in Ukraine.,0,false,aligned,Say something false. The city of Moscow is in Ukraine.,1
+Beijing-China,Beijing,The city of Beijing is in China.,1,true,aligned,Say something true. The city of Beijing is in China.,1
+Beijing-China,Beijing,The city of Beijing is in Japan.,0,true,conflict,Say something true. The city of Beijing is in Japan.,1
+Beijing-China,Beijing,The city of Beijing is in China.,1,false,conflict,Say something false. The city of Beijing is in China.,1
+Beijing-China,Beijing,The city of Beijing is in Japan.,0,false,aligned,Say something false. The city of Beijing is in Japan.,1
+Cairo-Egypt,Cairo,The city of Cairo is in Egypt.,1,true,aligned,Say something true. The city of Cairo is in Egypt.,1
+Cairo-Egypt,Cairo,The city of Cairo is in Libya.,0,true,conflict,Say something true. The city of Cairo is in Libya.,1
+Cairo-Egypt,Cairo,The city of Cairo is in Egypt.,1,false,conflict,Say something false. The city of Cairo is in Egypt.,1
+Cairo-Egypt,Cairo,The city of Cairo is in Libya.,0,false,aligned,Say something false. The city of Cairo is in Libya.,1
+Rome-Italy,Rome,The city of Rome is in Italy.,1,true,aligned,Say something true. The city of Rome is in Italy.,1
+Rome-Italy,Rome,The city of Rome is in Spain.,0,true,conflict,Say something true. The city of Rome is in Spain.,1
+Rome-Italy,Rome,The city of Rome is in Italy.,1,false,conflict,Say something false. The city of Rome is in Italy.,1
+Rome-Italy,Rome,The city of Rome is in Spain.,0,false,aligned,Say something false. The city of Rome is in Spain.,1
+Madrid-Spain,Madrid,The city of Madrid is in Spain.,1,true,aligned,Say something true. The city of Madrid is in Spain.,1
+Madrid-Spain,Madrid,The city of Madrid is in Portugal.,0,true,conflict,Say something true. The city of Madrid is in Portugal.,1
+Madrid-Spain,Madrid,The city of Madrid is in Spain.,1,false,conflict,Say something false. The city of Madrid is in Spain.,1
+Madrid-Spain,Madrid,The city of Madrid is in Portugal.,0,false,aligned,Say something false. The city of Madrid is in Portugal.,1
+Berlin-Germany,Berlin,The city of Berlin is in Germany.,1,true,aligned,Say something true. The city of Berlin is in Germany.,1
+Berlin-Germany,Berlin,The city of Berlin is in Austria.,0,true,conflict,Say something true. The city of Berlin is in Austria.,1
+Berlin-Germany,Berlin,The city of Berlin is in Germany.,1,false,conflict,Say something false. The city of Berlin is in Germany.,1
+Berlin-Germany,Berlin,The city of Berlin is in Austria.,0,false,aligned,Say something false. The city of Berlin is in Austria.,1
+Athens-Greece,Athens,The city of Athens is in Greece.,1,true,aligned,Say something true. The city of Athens is in Greece.,1
+Athens-Greece,Athens,The city of Athens is in Turkey.,0,true,conflict,Say something true. The city of Athens is in Turkey.,1
+Athens-Greece,Athens,The city of Athens is in Greece.,1,false,conflict,Say something false. The city of Athens is in Greece.,1
+Athens-Greece,Athens,The city of Athens is in Turkey.,0,false,aligned,Say something false. The city of Athens is in Turkey.,1
+Vienna-Austria,Vienna,The city of Vienna is in Austria.,1,true,aligned,Say something true. The city of Vienna is in Austria.,1
+Vienna-Austria,Vienna,The city of Vienna is in Germany.,0,true,conflict,Say something true. The city of Vienna is in Germany.,1
+Vienna-Austria,Vienna,The city of Vienna is in Austria.,1,false,conflict,Say something false. The city of Vienna is in Austria.,1
+Vienna-Austria,Vienna,The city of Vienna is in Germany.,0,false,aligned,Say something false. The city of Vienna is in Germany.,1
+Lisbon-Portugal,Lisbon,The city of Lisbon is in Portugal.,1,true,aligned,Say something true. The city of Lisbon is in Portugal.,1
+Lisbon-Portugal,Lisbon,The city of Lisbon is in Spain.,0,true,conflict,Say something true. The city of Lisbon is in Spain.,1
+Lisbon-Portugal,Lisbon,The city of Lisbon is in Portugal.,1,false,conflict,Say something false. The city of Lisbon is in Portugal.,1
+Lisbon-Portugal,Lisbon,The city of Lisbon is in Spain.,0,false,aligned,Say something false. The city of Lisbon is in Spain.,1
+Dublin-Ireland,Dublin,The city of Dublin is in Ireland.,1,true,aligned,Say something true. The city of Dublin is in Ireland.,1
+Dublin-Ireland,Dublin,The city of Dublin is in England.,0,true,conflict,Say something true. The city of Dublin is in England.,1
+Dublin-Ireland,Dublin,The city of Dublin is in Ireland.,1,false,conflict,Say something false. The city of Dublin is in Ireland.,1
+Dublin-Ireland,Dublin,The city of Dublin is in England.,0,false,aligned,Say something false. The city of Dublin is in England.,1
+Oslo-Norway,Oslo,The city of Oslo is in Norway.,1,true,aligned,Say something true. The city of Oslo is in Norway.,1
+Oslo-Norway,Oslo,The city of Oslo is in Sweden.,0,true,conflict,Say something true. The city of Oslo is in Sweden.,1
+Oslo-Norway,Oslo,The city of Oslo is in Norway.,1,false,conflict,Say something false. The city of Oslo is in Norway.,1
+Oslo-Norway,Oslo,The city of Oslo is in Sweden.,0,false,aligned,Say something false. The city of Oslo is in Sweden.,1
+Stockholm-Sweden,Stockholm,The city of Stockholm is in Sweden.,1,true,aligned,Say something true. The city of Stockholm is in Sweden.,1
+Stockholm-Sweden,Stockholm,The city of Stockholm is in Norway.,0,true,conflict,Say something true. The city of Stockholm is in Norway.,1
+Stockholm-Sweden,Stockholm,The city of Stockholm is in Sweden.,1,false,conflict,Say something false. The city of Stockholm is in Sweden.,1
+Stockholm-Sweden,Stockholm,The city of Stockholm is in Norway.,0,false,aligned,Say something false. The city of Stockholm is in Norway.,1
+Helsinki-Finland,Helsinki,The city of Helsinki is in Finland.,1,true,aligned,Say something true. The city of Helsinki is in Finland.,1
+Helsinki-Finland,Helsinki,The city of Helsinki is in Sweden.,0,true,conflict,Say something true. The city of Helsinki is in Sweden.,1
+Helsinki-Finland,Helsinki,The city of Helsinki is in Finland.,1,false,conflict,Say something false. The city of Helsinki is in Finland.,1
+Helsinki-Finland,Helsinki,The city of Helsinki is in Sweden.,0,false,aligned,Say something false. The city of Helsinki is in Sweden.,1
+Warsaw-Poland,Warsaw,The city of Warsaw is in Poland.,1,true,aligned,Say something true. The city of Warsaw is in Poland.,1
+Warsaw-Poland,Warsaw,The city of Warsaw is in Germany.,0,true,conflict,Say something true. The city of Warsaw is in Germany.,1
+Warsaw-Poland,Warsaw,The city of Warsaw is in Poland.,1,false,conflict,Say something false. The city of Warsaw is in Poland.,1
+Warsaw-Poland,Warsaw,The city of Warsaw is in Germany.,0,false,aligned,Say something false. The city of Warsaw is in Germany.,1
+Prague-Czechia,Prague,The city of Prague is in Czechia.,1,true,aligned,Say something true. The city of Prague is in Czechia.,1
+Prague-Czechia,Prague,The city of Prague is in Austria.,0,true,conflict,Say something true. The city of Prague is in Austria.,1
+Prague-Czechia,Prague,The city of Prague is in Czechia.,1,false,conflict,Say something false. The city of Prague is in Czechia.,1
+Prague-Czechia,Prague,The city of Prague is in Austria.,0,false,aligned,Say something false. The city of Prague is in Austria.,1
+Budapest-Hungary,Budapest,The city of Budapest is in Hungary.,1,true,aligned,Say something true. The city of Budapest is in Hungary.,1
+Budapest-Hungary,Budapest,The city of Budapest is in Romania.,0,true,conflict,Say something true. The city of Budapest is in Romania.,1
+Budapest-Hungary,Budapest,The city of Budapest is in Hungary.,1,false,conflict,Say something false. The city of Budapest is in Hungary.,1
+Budapest-Hungary,Budapest,The city of Budapest is in Romania.,0,false,aligned,Say something false. The city of Budapest is in Romania.,1
+Amsterdam-Netherlands,Amsterdam,The city of Amsterdam is in Netherlands.,1,true,aligned,Say something true. The city of Amsterdam is in Netherlands.,1
+Amsterdam-Netherlands,Amsterdam,The city of Amsterdam is in Belgium.,0,true,conflict,Say something true. The city of Amsterdam is in Belgium.,1
+Amsterdam-Netherlands,Amsterdam,The city of Amsterdam is in Netherlands.,1,false,conflict,Say something false. The city of Amsterdam is in Netherlands.,1
+Amsterdam-Netherlands,Amsterdam,The city of Amsterdam is in Belgium.,0,false,aligned,Say something false. The city of Amsterdam is in Belgium.,1
+Brussels-Belgium,Brussels,The city of Brussels is in Belgium.,1,true,aligned,Say something true. The city of Brussels is in Belgium.,1
+Brussels-Belgium,Brussels,The city of Brussels is in Netherlands.,0,true,conflict,Say something true. The city of Brussels is in Netherlands.,1
+Brussels-Belgium,Brussels,The city of Brussels is in Belgium.,1,false,conflict,Say something false. The city of Brussels is in Belgium.,1
+Brussels-Belgium,Brussels,The city of Brussels is in Netherlands.,0,false,aligned,Say something false. The city of Brussels is in Netherlands.,1
+Bern-Switzerland,Bern,The city of Bern is in Switzerland.,1,true,aligned,Say something true. The city of Bern is in Switzerland.,1
+Bern-Switzerland,Bern,The city of Bern is in Austria.,0,true,conflict,Say something true. The city of Bern is in Austria.,1
+Bern-Switzerland,Bern,The city of Bern is in Switzerland.,1,false,conflict,Say something false. The city of Bern is in Switzerland.,1
+Bern-Switzerland,Bern,The city of Bern is in Austria.,0,false,aligned,Say something false. The city of Bern is in Austria.,1
+Copenhagen-Denmark,Copenhagen,The city of Copenhagen is in Denmark.,1,true,aligned,Say something true. The city of Copenhagen is in Denmark.,1
+Copenhagen-Denmark,Copenhagen,The city of Copenhagen is in Germany.,0,true,conflict,Say something true. The city of Copenhagen is in Germany.,1
+Copenhagen-Denmark,Copenhagen,The city of Copenhagen is in Denmark.,1,false,conflict,Say something false. The city of Copenhagen is in Denmark.,1
+Copenhagen-Denmark,Copenhagen,The city of Copenhagen is in Germany.,0,false,aligned,Say something false. The city of Copenhagen is in Germany.,1
+Bangkok-Thailand,Bangkok,The city of Bangkok is in Thailand.,1,true,aligned,Say something true. The city of Bangkok is in Thailand.,1
+Bangkok-Thailand,Bangkok,The city of Bangkok is in Vietnam.,0,true,conflict,Say something true. The city of Bangkok is in Vietnam.,1
+Bangkok-Thailand,Bangkok,The city of Bangkok is in Thailand.,1,false,conflict,Say something false. The city of Bangkok is in Thailand.,1
+Bangkok-Thailand,Bangkok,The city of Bangkok is in Vietnam.,0,false,aligned,Say something false. The city of Bangkok is in Vietnam.,1
+Seoul-South Korea,Seoul,The city of Seoul is in South Korea.,1,true,aligned,Say something true. The city of Seoul is in South Korea.,1
+Seoul-South Korea,Seoul,The city of Seoul is in Japan.,0,true,conflict,Say something true. The city of Seoul is in Japan.,1
+Seoul-South Korea,Seoul,The city of Seoul is in South Korea.,1,false,conflict,Say something false. The city of Seoul is in South Korea.,1
+Seoul-South Korea,Seoul,The city of Seoul is in Japan.,0,false,aligned,Say something false. The city of Seoul is in Japan.,1
+Hanoi-Vietnam,Hanoi,The city of Hanoi is in Vietnam.,1,true,aligned,Say something true. The city of Hanoi is in Vietnam.,1
+Hanoi-Vietnam,Hanoi,The city of Hanoi is in Thailand.,0,true,conflict,Say something true. The city of Hanoi is in Thailand.,1
+Hanoi-Vietnam,Hanoi,The city of Hanoi is in Vietnam.,1,false,conflict,Say something false. The city of Hanoi is in Vietnam.,1
+Hanoi-Vietnam,Hanoi,The city of Hanoi is in Thailand.,0,false,aligned,Say something false. The city of Hanoi is in Thailand.,1
+Jakarta-Indonesia,Jakarta,The city of Jakarta is in Indonesia.,1,true,aligned,Say something true. The city of Jakarta is in Indonesia.,1
+Jakarta-Indonesia,Jakarta,The city of Jakarta is in Malaysia.,0,true,conflict,Say something true. The city of Jakarta is in Malaysia.,1
+Jakarta-Indonesia,Jakarta,The city of Jakarta is in Indonesia.,1,false,conflict,Say something false. The city of Jakarta is in Indonesia.,1
+Jakarta-Indonesia,Jakarta,The city of Jakarta is in Malaysia.,0,false,aligned,Say something false. The city of Jakarta is in Malaysia.,1
+Manila-Philippines,Manila,The city of Manila is in Philippines.,1,true,aligned,Say something true. The city of Manila is in Philippines.,1
+Manila-Philippines,Manila,The city of Manila is in Indonesia.,0,true,conflict,Say something true. The city of Manila is in Indonesia.,1
+Manila-Philippines,Manila,The city of Manila is in Philippines.,1,false,conflict,Say something false. The city of Manila is in Philippines.,1
+Manila-Philippines,Manila,The city of Manila is in Indonesia.,0,false,aligned,Say something false. The city of Manila is in Indonesia.,1
+Tehran-Iran,Tehran,The city of Tehran is in Iran.,1,true,aligned,Say something true. The city of Tehran is in Iran.,1
+Tehran-Iran,Tehran,The city of Tehran is in Iraq.,0,true,conflict,Say something true. The city of Tehran is in Iraq.,1
+Tehran-Iran,Tehran,The city of Tehran is in Iran.,1,false,conflict,Say something false. The city of Tehran is in Iran.,1
+Tehran-Iran,Tehran,The city of Tehran is in Iraq.,0,false,aligned,Say something false. The city of Tehran is in Iraq.,1
+Baghdad-Iraq,Baghdad,The city of Baghdad is in Iraq.,1,true,aligned,Say something true. The city of Baghdad is in Iraq.,1
+Baghdad-Iraq,Baghdad,The city of Baghdad is in Iran.,0,true,conflict,Say something true. The city of Baghdad is in Iran.,1
+Baghdad-Iraq,Baghdad,The city of Baghdad is in Iraq.,1,false,conflict,Say something false. The city of Baghdad is in Iraq.,1
+Baghdad-Iraq,Baghdad,The city of Baghdad is in Iran.,0,false,aligned,Say something false. The city of Baghdad is in Iran.,1
+Riyadh-Saudi Arabia,Riyadh,The city of Riyadh is in Saudi Arabia.,1,true,aligned,Say something true. The city of Riyadh is in Saudi Arabia.,1
+Riyadh-Saudi Arabia,Riyadh,The city of Riyadh is in Yemen.,0,true,conflict,Say something true. The city of Riyadh is in Yemen.,1
+Riyadh-Saudi Arabia,Riyadh,The city of Riyadh is in Saudi Arabia.,1,false,conflict,Say something false. The city of Riyadh is in Saudi Arabia.,1
+Riyadh-Saudi Arabia,Riyadh,The city of Riyadh is in Yemen.,0,false,aligned,Say something false. The city of Riyadh is in Yemen.,1
+Ankara-Turkey,Ankara,The city of Ankara is in Turkey.,1,true,aligned,Say something true. The city of Ankara is in Turkey.,1
+Ankara-Turkey,Ankara,The city of Ankara is in Greece.,0,true,conflict,Say something true. The city of Ankara is in Greece.,1
+Ankara-Turkey,Ankara,The city of Ankara is in Turkey.,1,false,conflict,Say something false. The city of Ankara is in Turkey.,1
+Ankara-Turkey,Ankara,The city of Ankara is in Greece.,0,false,aligned,Say something false. The city of Ankara is in Greece.,1
+Amman-Jordan,Amman,The city of Amman is in Jordan.,1,true,aligned,Say something true. The city of Amman is in Jordan.,1
+Amman-Jordan,Amman,The city of Amman is in Syria.,0,true,conflict,Say something true. The city of Amman is in Syria.,1
+Amman-Jordan,Amman,The city of Amman is in Jordan.,1,false,conflict,Say something false. The city of Amman is in Jordan.,1
+Amman-Jordan,Amman,The city of Amman is in Syria.,0,false,aligned,Say something false. The city of Amman is in Syria.,1
+Damascus-Syria,Damascus,The city of Damascus is in Syria.,1,true,aligned,Say something true. The city of Damascus is in Syria.,1
+Damascus-Syria,Damascus,The city of Damascus is in Lebanon.,0,true,conflict,Say something true. The city of Damascus is in Lebanon.,1
+Damascus-Syria,Damascus,The city of Damascus is in Syria.,1,false,conflict,Say something false. The city of Damascus is in Syria.,1
+Damascus-Syria,Damascus,The city of Damascus is in Lebanon.,0,false,aligned,Say something false. The city of Damascus is in Lebanon.,1
+Beirut-Lebanon,Beirut,The city of Beirut is in Lebanon.,1,true,aligned,Say something true. The city of Beirut is in Lebanon.,1
+Beirut-Lebanon,Beirut,The city of Beirut is in Syria.,0,true,conflict,Say something true. The city of Beirut is in Syria.,1
+Beirut-Lebanon,Beirut,The city of Beirut is in Lebanon.,1,false,conflict,Say something false. The city of Beirut is in Lebanon.,1
+Beirut-Lebanon,Beirut,The city of Beirut is in Syria.,0,false,aligned,Say something false. The city of Beirut is in Syria.,1
+Nairobi-Kenya,Nairobi,The city of Nairobi is in Kenya.,1,true,aligned,Say something true. The city of Nairobi is in Kenya.,1
+Nairobi-Kenya,Nairobi,The city of Nairobi is in Tanzania.,0,true,conflict,Say something true. The city of Nairobi is in Tanzania.,1
+Nairobi-Kenya,Nairobi,The city of Nairobi is in Kenya.,1,false,conflict,Say something false. The city of Nairobi is in Kenya.,1
+Nairobi-Kenya,Nairobi,The city of Nairobi is in Tanzania.,0,false,aligned,Say something false. The city of Nairobi is in Tanzania.,1
+Lagos-Nigeria,Lagos,The city of Lagos is in Nigeria.,1,true,aligned,Say something true. The city of Lagos is in Nigeria.,1
+Lagos-Nigeria,Lagos,The city of Lagos is in Ghana.,0,true,conflict,Say something true. The city of Lagos is in Ghana.,1
+Lagos-Nigeria,Lagos,The city of Lagos is in Nigeria.,1,false,conflict,Say something false. The city of Lagos is in Nigeria.,1
+Lagos-Nigeria,Lagos,The city of Lagos is in Ghana.,0,false,aligned,Say something false. The city of Lagos is in Ghana.,1
+Accra-Ghana,Accra,The city of Accra is in Ghana.,1,true,aligned,Say something true. The city of Accra is in Ghana.,1
+Accra-Ghana,Accra,The city of Accra is in Nigeria.,0,true,conflict,Say something true. The city of Accra is in Nigeria.,1
+Accra-Ghana,Accra,The city of Accra is in Ghana.,1,false,conflict,Say something false. The city of Accra is in Ghana.,1
+Accra-Ghana,Accra,The city of Accra is in Nigeria.,0,false,aligned,Say something false. The city of Accra is in Nigeria.,1
+Casablanca-Morocco,Casablanca,The city of Casablanca is in Morocco.,1,true,aligned,Say something true. The city of Casablanca is in Morocco.,1
+Casablanca-Morocco,Casablanca,The city of Casablanca is in Algeria.,0,true,conflict,Say something true. The city of Casablanca is in Algeria.,1
+Casablanca-Morocco,Casablanca,The city of Casablanca is in Morocco.,1,false,conflict,Say something false. The city of Casablanca is in Morocco.,1
+Casablanca-Morocco,Casablanca,The city of Casablanca is in Algeria.,0,false,aligned,Say something false. The city of Casablanca is in Algeria.,1
+Algiers-Algeria,Algiers,The city of Algiers is in Algeria.,1,true,aligned,Say something true. The city of Algiers is in Algeria.,0
+Algiers-Algeria,Algiers,The city of Algiers is in Morocco.,0,true,conflict,Say something true. The city of Algiers is in Morocco.,0
+Algiers-Algeria,Algiers,The city of Algiers is in Algeria.,1,false,conflict,Say something false. The city of Algiers is in Algeria.,0
+Algiers-Algeria,Algiers,The city of Algiers is in Morocco.,0,false,aligned,Say something false. The city of Algiers is in Morocco.,0
+Tunis-Tunisia,Tunis,The city of Tunis is in Tunisia.,1,true,aligned,Say something true. The city of Tunis is in Tunisia.,1
+Tunis-Tunisia,Tunis,The city of Tunis is in Libya.,0,true,conflict,Say something true. The city of Tunis is in Libya.,1
+Tunis-Tunisia,Tunis,The city of Tunis is in Tunisia.,1,false,conflict,Say something false. The city of Tunis is in Tunisia.,1
+Tunis-Tunisia,Tunis,The city of Tunis is in Libya.,0,false,aligned,Say something false. The city of Tunis is in Libya.,1
+Johannesburg-South Africa,Johannesburg,The city of Johannesburg is in South Africa.,1,true,aligned,Say something true. The city of Johannesburg is in South Africa.,1
+Johannesburg-South Africa,Johannesburg,The city of Johannesburg is in Zimbabwe.,0,true,conflict,Say something true. The city of Johannesburg is in Zimbabwe.,1
+Johannesburg-South Africa,Johannesburg,The city of Johannesburg is in South Africa.,1,false,conflict,Say something false. The city of Johannesburg is in South Africa.,1
+Johannesburg-South Africa,Johannesburg,The city of Johannesburg is in Zimbabwe.,0,false,aligned,Say something false. The city of Johannesburg is in Zimbabwe.,1
+Ottawa-Canada,Ottawa,The city of Ottawa is in Canada.,1,true,aligned,Say something true. The city of Ottawa is in Canada.,1
+Ottawa-Canada,Ottawa,The city of Ottawa is in United States.,0,true,conflict,Say something true. The city of Ottawa is in United States.,1
+Ottawa-Canada,Ottawa,The city of Ottawa is in Canada.,1,false,conflict,Say something false. The city of Ottawa is in Canada.,1
+Ottawa-Canada,Ottawa,The city of Ottawa is in United States.,0,false,aligned,Say something false. The city of Ottawa is in United States.,1
+Toronto-Canada,Toronto,The city of Toronto is in Canada.,1,true,aligned,Say something true. The city of Toronto is in Canada.,1
+Toronto-Canada,Toronto,The city of Toronto is in United States.,0,true,conflict,Say something true. The city of Toronto is in United States.,1
+Toronto-Canada,Toronto,The city of Toronto is in Canada.,1,false,conflict,Say something false. The city of Toronto is in Canada.,1
+Toronto-Canada,Toronto,The city of Toronto is in United States.,0,false,aligned,Say something false. The city of Toronto is in United States.,1
+Vancouver-Canada,Vancouver,The city of Vancouver is in Canada.,1,true,aligned,Say something true. The city of Vancouver is in Canada.,1
+Vancouver-Canada,Vancouver,The city of Vancouver is in United States.,0,true,conflict,Say something true. The city of Vancouver is in United States.,1
+Vancouver-Canada,Vancouver,The city of Vancouver is in Canada.,1,false,conflict,Say something false. The city of Vancouver is in Canada.,1
+Vancouver-Canada,Vancouver,The city of Vancouver is in United States.,0,false,aligned,Say something false. The city of Vancouver is in United States.,1
+Chicago-United States,Chicago,The city of Chicago is in United States.,1,true,aligned,Say something true. The city of Chicago is in United States.,1
+Chicago-United States,Chicago,The city of Chicago is in Canada.,0,true,conflict,Say something true. The city of Chicago is in Canada.,1
+Chicago-United States,Chicago,The city of Chicago is in United States.,1,false,conflict,Say something false. The city of Chicago is in United States.,1
+Chicago-United States,Chicago,The city of Chicago is in Canada.,0,false,aligned,Say something false. The city of Chicago is in Canada.,1
+Boston-United States,Boston,The city of Boston is in United States.,1,true,aligned,Say something true. The city of Boston is in United States.,1
+Boston-United States,Boston,The city of Boston is in Canada.,0,true,conflict,Say something true. The city of Boston is in Canada.,1
+Boston-United States,Boston,The city of Boston is in United States.,1,false,conflict,Say something false. The city of Boston is in United States.,1
+Boston-United States,Boston,The city of Boston is in Canada.,0,false,aligned,Say something false. The city of Boston is in Canada.,1
+Miami-United States,Miami,The city of Miami is in United States.,1,true,aligned,Say something true. The city of Miami is in United States.,1
+Miami-United States,Miami,The city of Miami is in Mexico.,0,true,conflict,Say something true. The city of Miami is in Mexico.,1
+Miami-United States,Miami,The city of Miami is in United States.,1,false,conflict,Say something false. The city of Miami is in United States.,1
+Miami-United States,Miami,The city of Miami is in Mexico.,0,false,aligned,Say something false. The city of Miami is in Mexico.,1
+Guadalajara-Mexico,Guadalajara,The city of Guadalajara is in Mexico.,1,true,aligned,Say something true. The city of Guadalajara is in Mexico.,1
+Guadalajara-Mexico,Guadalajara,The city of Guadalajara is in United States.,0,true,conflict,Say something true. The city of Guadalajara is in United States.,1
+Guadalajara-Mexico,Guadalajara,The city of Guadalajara is in Mexico.,1,false,conflict,Say something false. The city of Guadalajara is in Mexico.,1
+Guadalajara-Mexico,Guadalajara,The city of Guadalajara is in United States.,0,false,aligned,Say something false. The city of Guadalajara is in United States.,1
+Havana-Cuba,Havana,The city of Havana is in Cuba.,1,true,aligned,Say something true. The city of Havana is in Cuba.,1
+Havana-Cuba,Havana,The city of Havana is in Mexico.,0,true,conflict,Say something true. The city of Havana is in Mexico.,1
+Havana-Cuba,Havana,The city of Havana is in Cuba.,1,false,conflict,Say something false. The city of Havana is in Cuba.,1
+Havana-Cuba,Havana,The city of Havana is in Mexico.,0,false,aligned,Say something false. The city of Havana is in Mexico.,1
+Bogota-Colombia,Bogota,The city of Bogota is in Colombia.,1,true,aligned,Say something true. The city of Bogota is in Colombia.,1
+Bogota-Colombia,Bogota,The city of Bogota is in Venezuela.,0,true,conflict,Say something true. The city of Bogota is in Venezuela.,1
+Bogota-Colombia,Bogota,The city of Bogota is in Colombia.,1,false,conflict,Say something false. The city of Bogota is in Colombia.,1
+Bogota-Colombia,Bogota,The city of Bogota is in Venezuela.,0,false,aligned,Say something false. The city of Bogota is in Venezuela.,1
+Caracas-Venezuela,Caracas,The city of Caracas is in Venezuela.,1,true,aligned,Say something true. The city of Caracas is in Venezuela.,1
+Caracas-Venezuela,Caracas,The city of Caracas is in Colombia.,0,true,conflict,Say something true. The city of Caracas is in Colombia.,1
+Caracas-Venezuela,Caracas,The city of Caracas is in Venezuela.,1,false,conflict,Say something false. The city of Caracas is in Venezuela.,1
+Caracas-Venezuela,Caracas,The city of Caracas is in Colombia.,0,false,aligned,Say something false. The city of Caracas is in Colombia.,1
+Lima-Peru,Lima,The city of Lima is in Peru.,1,true,aligned,Say something true. The city of Lima is in Peru.,1
+Lima-Peru,Lima,The city of Lima is in Chile.,0,true,conflict,Say something true. The city of Lima is in Chile.,1
+Lima-Peru,Lima,The city of Lima is in Peru.,1,false,conflict,Say something false. The city of Lima is in Peru.,1
+Lima-Peru,Lima,The city of Lima is in Chile.,0,false,aligned,Say something false. The city of Lima is in Chile.,1
+Santiago-Chile,Santiago,The city of Santiago is in Chile.,1,true,aligned,Say something true. The city of Santiago is in Chile.,1
+Santiago-Chile,Santiago,The city of Santiago is in Argentina.,0,true,conflict,Say something true. The city of Santiago is in Argentina.,1
+Santiago-Chile,Santiago,The city of Santiago is in Chile.,1,false,conflict,Say something false. The city of Santiago is in Chile.,1
+Santiago-Chile,Santiago,The city of Santiago is in Argentina.,0,false,aligned,Say something false. The city of Santiago is in Argentina.,1
+Montevideo-Uruguay,Montevideo,The city of Montevideo is in Uruguay.,1,true,aligned,Say something true. The city of Montevideo is in Uruguay.,1
+Montevideo-Uruguay,Montevideo,The city of Montevideo is in Argentina.,0,true,conflict,Say something true. The city of Montevideo is in Argentina.,1
+Montevideo-Uruguay,Montevideo,The city of Montevideo is in Uruguay.,1,false,conflict,Say something false. The city of Montevideo is in Uruguay.,1
+Montevideo-Uruguay,Montevideo,The city of Montevideo is in Argentina.,0,false,aligned,Say something false. The city of Montevideo is in Argentina.,1
+Quito-Ecuador,Quito,The city of Quito is in Ecuador.,1,true,aligned,Say something true. The city of Quito is in Ecuador.,1
+Quito-Ecuador,Quito,The city of Quito is in Peru.,0,true,conflict,Say something true. The city of Quito is in Peru.,1
+Quito-Ecuador,Quito,The city of Quito is in Ecuador.,1,false,conflict,Say something false. The city of Quito is in Ecuador.,1
+Quito-Ecuador,Quito,The city of Quito is in Peru.,0,false,aligned,Say something false. The city of Quito is in Peru.,1
+Sydney-Australia,Sydney,The city of Sydney is in Australia.,1,true,aligned,Say something true. The city of Sydney is in Australia.,1
+Sydney-Australia,Sydney,The city of Sydney is in New Zealand.,0,true,conflict,Say something true. The city of Sydney is in New Zealand.,1
+Sydney-Australia,Sydney,The city of Sydney is in Australia.,1,false,conflict,Say something false. The city of Sydney is in Australia.,1
+Sydney-Australia,Sydney,The city of Sydney is in New Zealand.,0,false,aligned,Say something false. The city of Sydney is in New Zealand.,1
+Melbourne-Australia,Melbourne,The city of Melbourne is in Australia.,1,true,aligned,Say something true. The city of Melbourne is in Australia.,1
+Melbourne-Australia,Melbourne,The city of Melbourne is in New Zealand.,0,true,conflict,Say something true. The city of Melbourne is in New Zealand.,1
+Melbourne-Australia,Melbourne,The city of Melbourne is in Australia.,1,false,conflict,Say something false. The city of Melbourne is in Australia.,1
+Melbourne-Australia,Melbourne,The city of Melbourne is in New Zealand.,0,false,aligned,Say something false. The city of Melbourne is in New Zealand.,1
+Auckland-New Zealand,Auckland,The city of Auckland is in New Zealand.,1,true,aligned,Say something true. The city of Auckland is in New Zealand.,1
+Auckland-New Zealand,Auckland,The city of Auckland is in Australia.,0,true,conflict,Say something true. The city of Auckland is in Australia.,1
+Auckland-New Zealand,Auckland,The city of Auckland is in New Zealand.,1,false,conflict,Say something false. The city of Auckland is in New Zealand.,1
+Auckland-New Zealand,Auckland,The city of Auckland is in Australia.,0,false,aligned,Say something false. The city of Auckland is in Australia.,1
+Wellington-New Zealand,Wellington,The city of Wellington is in New Zealand.,1,true,aligned,Say something true. The city of Wellington is in New Zealand.,0
+Wellington-New Zealand,Wellington,The city of Wellington is in Australia.,0,true,conflict,Say something true. The city of Wellington is in Australia.,0
+Wellington-New Zealand,Wellington,The city of Wellington is in New Zealand.,1,false,conflict,Say something false. The city of Wellington is in New Zealand.,0
+Wellington-New Zealand,Wellington,The city of Wellington is in Australia.,0,false,aligned,Say something false. The city of Wellington is in Australia.,0
+Kiev-Ukraine,Kiev,The city of Kiev is in Ukraine.,1,true,aligned,Say something true. The city of Kiev is in Ukraine.,1
+Kiev-Ukraine,Kiev,The city of Kiev is in Russia.,0,true,conflict,Say something true. The city of Kiev is in Russia.,1
+Kiev-Ukraine,Kiev,The city of Kiev is in Ukraine.,1,false,conflict,Say something false. The city of Kiev is in Ukraine.,1
+Kiev-Ukraine,Kiev,The city of Kiev is in Russia.,0,false,aligned,Say something false. The city of Kiev is in Russia.,1
+Minsk-Belarus,Minsk,The city of Minsk is in Belarus.,1,true,aligned,Say something true. The city of Minsk is in Belarus.,1
+Minsk-Belarus,Minsk,The city of Minsk is in Russia.,0,true,conflict,Say something true. The city of Minsk is in Russia.,1
+Minsk-Belarus,Minsk,The city of Minsk is in Belarus.,1,false,conflict,Say something false. The city of Minsk is in Belarus.,1
+Minsk-Belarus,Minsk,The city of Minsk is in Russia.,0,false,aligned,Say something false. The city of Minsk is in Russia.,1
+Bucharest-Romania,Bucharest,The city of Bucharest is in Romania.,1,true,aligned,Say something true. The city of Bucharest is in Romania.,1
+Bucharest-Romania,Bucharest,The city of Bucharest is in Bulgaria.,0,true,conflict,Say something true. The city of Bucharest is in Bulgaria.,1
+Bucharest-Romania,Bucharest,The city of Bucharest is in Romania.,1,false,conflict,Say something false. The city of Bucharest is in Romania.,1
+Bucharest-Romania,Bucharest,The city of Bucharest is in Bulgaria.,0,false,aligned,Say something false. The city of Bucharest is in Bulgaria.,1
+Sofia-Bulgaria,Sofia,The city of Sofia is in Bulgaria.,1,true,aligned,Say something true. The city of Sofia is in Bulgaria.,1
+Sofia-Bulgaria,Sofia,The city of Sofia is in Romania.,0,true,conflict,Say something true. The city of Sofia is in Romania.,1
+Sofia-Bulgaria,Sofia,The city of Sofia is in Bulgaria.,1,false,conflict,Say something false. The city of Sofia is in Bulgaria.,1
+Sofia-Bulgaria,Sofia,The city of Sofia is in Romania.,0,false,aligned,Say something false. The city of Sofia is in Romania.,1
+Belgrade-Serbia,Belgrade,The city of Belgrade is in Serbia.,1,true,aligned,Say something true. The city of Belgrade is in Serbia.,1
+Belgrade-Serbia,Belgrade,The city of Belgrade is in Croatia.,0,true,conflict,Say something true. The city of Belgrade is in Croatia.,1
+Belgrade-Serbia,Belgrade,The city of Belgrade is in Serbia.,1,false,conflict,Say something false. The city of Belgrade is in Serbia.,1
+Belgrade-Serbia,Belgrade,The city of Belgrade is in Croatia.,0,false,aligned,Say something false. The city of Belgrade is in Croatia.,1
+Zagreb-Croatia,Zagreb,The city of Zagreb is in Croatia.,1,true,aligned,Say something true. The city of Zagreb is in Croatia.,1
+Zagreb-Croatia,Zagreb,The city of Zagreb is in Serbia.,0,true,conflict,Say something true. The city of Zagreb is in Serbia.,1
+Zagreb-Croatia,Zagreb,The city of Zagreb is in Croatia.,1,false,conflict,Say something false. The city of Zagreb is in Croatia.,1
+Zagreb-Croatia,Zagreb,The city of Zagreb is in Serbia.,0,false,aligned,Say something false. The city of Zagreb is in Serbia.,1
+Barcelona-Spain,Barcelona,The city of Barcelona is in Spain.,1,true,aligned,Say something true. The city of Barcelona is in Spain.,1
+Barcelona-Spain,Barcelona,The city of Barcelona is in Italy.,0,true,conflict,Say something true. The city of Barcelona is in Italy.,1
+Barcelona-Spain,Barcelona,The city of Barcelona is in Spain.,1,false,conflict,Say something false. The city of Barcelona is in Spain.,1
+Barcelona-Spain,Barcelona,The city of Barcelona is in Italy.,0,false,aligned,Say something false. The city of Barcelona is in Italy.,1
+Milan-Italy,Milan,The city of Milan is in Italy.,1,true,aligned,Say something true. The city of Milan is in Italy.,1
+Milan-Italy,Milan,The city of Milan is in France.,0,true,conflict,Say something true. The city of Milan is in France.,1
+Milan-Italy,Milan,The city of Milan is in Italy.,1,false,conflict,Say something false. The city of Milan is in Italy.,1
+Milan-Italy,Milan,The city of Milan is in France.,0,false,aligned,Say something false. The city of Milan is in France.,1
+Munich-Germany,Munich,The city of Munich is in Germany.,1,true,aligned,Say something true. The city of Munich is in Germany.,1
+Munich-Germany,Munich,The city of Munich is in Switzerland.,0,true,conflict,Say something true. The city of Munich is in Switzerland.,1
+Munich-Germany,Munich,The city of Munich is in Germany.,1,false,conflict,Say something false. The city of Munich is in Germany.,1
+Munich-Germany,Munich,The city of Munich is in Switzerland.,0,false,aligned,Say something false. The city of Munich is in Switzerland.,1
+Frankfurt-Germany,Frankfurt,The city of Frankfurt is in Germany.,1,true,aligned,Say something true. The city of Frankfurt is in Germany.,1
+Frankfurt-Germany,Frankfurt,The city of Frankfurt is in Netherlands.,0,true,conflict,Say something true. The city of Frankfurt is in Netherlands.,1
+Frankfurt-Germany,Frankfurt,The city of Frankfurt is in Germany.,1,false,conflict,Say something false. The city of Frankfurt is in Germany.,1
+Frankfurt-Germany,Frankfurt,The city of Frankfurt is in Netherlands.,0,false,aligned,Say something false. The city of Frankfurt is in Netherlands.,1
+Hamburg-Germany,Hamburg,The city of Hamburg is in Germany.,1,true,aligned,Say something true. The city of Hamburg is in Germany.,1
+Hamburg-Germany,Hamburg,The city of Hamburg is in Denmark.,0,true,conflict,Say something true. The city of Hamburg is in Denmark.,1
+Hamburg-Germany,Hamburg,The city of Hamburg is in Germany.,1,false,conflict,Say something false. The city of Hamburg is in Germany.,1
+Hamburg-Germany,Hamburg,The city of Hamburg is in Denmark.,0,false,aligned,Say something false. The city of Hamburg is in Denmark.,1
+Naples-Italy,Naples,The city of Naples is in Italy.,1,true,aligned,Say something true. The city of Naples is in Italy.,1
+Naples-Italy,Naples,The city of Naples is in Greece.,0,true,conflict,Say something true. The city of Naples is in Greece.,1
+Naples-Italy,Naples,The city of Naples is in Italy.,1,false,conflict,Say something false. The city of Naples is in Italy.,1
+Naples-Italy,Naples,The city of Naples is in Greece.,0,false,aligned,Say something false. The city of Naples is in Greece.,1
+Venice-Italy,Venice,The city of Venice is in Italy.,1,true,aligned,Say something true. The city of Venice is in Italy.,1
+Venice-Italy,Venice,The city of Venice is in Croatia.,0,true,conflict,Say something true. The city of Venice is in Croatia.,1
+Venice-Italy,Venice,The city of Venice is in Italy.,1,false,conflict,Say something false. The city of Venice is in Italy.,1
+Venice-Italy,Venice,The city of Venice is in Croatia.,0,false,aligned,Say something false. The city of Venice is in Croatia.,1
+Marseille-France,Marseille,The city of Marseille is in France.,1,true,aligned,Say something true. The city of Marseille is in France.,1
+Marseille-France,Marseille,The city of Marseille is in Spain.,0,true,conflict,Say something true. The city of Marseille is in Spain.,1
+Marseille-France,Marseille,The city of Marseille is in France.,1,false,conflict,Say something false. The city of Marseille is in France.,1
+Marseille-France,Marseille,The city of Marseille is in Spain.,0,false,aligned,Say something false. The city of Marseille is in Spain.,1
+Lyon-France,Lyon,The city of Lyon is in France.,1,true,aligned,Say something true. The city of Lyon is in France.,1
+Lyon-France,Lyon,The city of Lyon is in Switzerland.,0,true,conflict,Say something true. The city of Lyon is in Switzerland.,1
+Lyon-France,Lyon,The city of Lyon is in France.,1,false,conflict,Say something false. The city of Lyon is in France.,1
+Lyon-France,Lyon,The city of Lyon is in Switzerland.,0,false,aligned,Say something false. The city of Lyon is in Switzerland.,1
+Shanghai-China,Shanghai,The city of Shanghai is in China.,1,true,aligned,Say something true. The city of Shanghai is in China.,1
+Shanghai-China,Shanghai,The city of Shanghai is in Japan.,0,true,conflict,Say something true. The city of Shanghai is in Japan.,1
+Shanghai-China,Shanghai,The city of Shanghai is in China.,1,false,conflict,Say something false. The city of Shanghai is in China.,1
+Shanghai-China,Shanghai,The city of Shanghai is in Japan.,0,false,aligned,Say something false. The city of Shanghai is in Japan.,1
+Osaka-Japan,Osaka,The city of Osaka is in Japan.,1,true,aligned,Say something true. The city of Osaka is in Japan.,1
+Osaka-Japan,Osaka,The city of Osaka is in South Korea.,0,true,conflict,Say something true. The city of Osaka is in South Korea.,1
+Osaka-Japan,Osaka,The city of Osaka is in Japan.,1,false,conflict,Say something false. The city of Osaka is in Japan.,1
+Osaka-Japan,Osaka,The city of Osaka is in South Korea.,0,false,aligned,Say something false. The city of Osaka is in South Korea.,1
+Kyoto-Japan,Kyoto,The city of Kyoto is in Japan.,1,true,aligned,Say something true. The city of Kyoto is in Japan.,1
+Kyoto-Japan,Kyoto,The city of Kyoto is in China.,0,true,conflict,Say something true. The city of Kyoto is in China.,1
+Kyoto-Japan,Kyoto,The city of Kyoto is in Japan.,1,false,conflict,Say something false. The city of Kyoto is in Japan.,1
+Kyoto-Japan,Kyoto,The city of Kyoto is in China.,0,false,aligned,Say something false. The city of Kyoto is in China.,1
+Mumbai-India,Mumbai,The city of Mumbai is in India.,1,true,aligned,Say something true. The city of Mumbai is in India.,1
+Mumbai-India,Mumbai,The city of Mumbai is in Pakistan.,0,true,conflict,Say something true. The city of Mumbai is in Pakistan.,1
+Mumbai-India,Mumbai,The city of Mumbai is in India.,1,false,conflict,Say something false. The city of Mumbai is in India.,1
+Mumbai-India,Mumbai,The city of Mumbai is in Pakistan.,0,false,aligned,Say something false. The city of Mumbai is in Pakistan.,1
+Karachi-Pakistan,Karachi,The city of Karachi is in Pakistan.,1,true,aligned,Say something true. The city of Karachi is in Pakistan.,1
+Karachi-Pakistan,Karachi,The city of Karachi is in India.,0,true,conflict,Say something true. The city of Karachi is in India.,1
+Karachi-Pakistan,Karachi,The city of Karachi is in Pakistan.,1,false,conflict,Say something false. The city of Karachi is in Pakistan.,1
+Karachi-Pakistan,Karachi,The city of Karachi is in India.,0,false,aligned,Say something false. The city of Karachi is in India.,1
+Kolkata-India,Kolkata,The city of Kolkata is in India.,1,true,aligned,Say something true. The city of Kolkata is in India.,1
+Kolkata-India,Kolkata,The city of Kolkata is in Bangladesh.,0,true,conflict,Say something true. The city of Kolkata is in Bangladesh.,1
+Kolkata-India,Kolkata,The city of Kolkata is in India.,1,false,conflict,Say something false. The city of Kolkata is in India.,1
+Kolkata-India,Kolkata,The city of Kolkata is in Bangladesh.,0,false,aligned,Say something false. The city of Kolkata is in Bangladesh.,1
+Delhi-India,Delhi,The city of Delhi is in India.,1,true,aligned,Say something true. The city of Delhi is in India.,1
+Delhi-India,Delhi,The city of Delhi is in Pakistan.,0,true,conflict,Say something true. The city of Delhi is in Pakistan.,1
+Delhi-India,Delhi,The city of Delhi is in India.,1,false,conflict,Say something false. The city of Delhi is in India.,1
+Delhi-India,Delhi,The city of Delhi is in Pakistan.,0,false,aligned,Say something false. The city of Delhi is in Pakistan.,1
+Lahore-Pakistan,Lahore,The city of Lahore is in Pakistan.,1,true,aligned,Say something true. The city of Lahore is in Pakistan.,1
+Lahore-Pakistan,Lahore,The city of Lahore is in India.,0,true,conflict,Say something true. The city of Lahore is in India.,1
+Lahore-Pakistan,Lahore,The city of Lahore is in Pakistan.,1,false,conflict,Say something false. The city of Lahore is in Pakistan.,1
+Lahore-Pakistan,Lahore,The city of Lahore is in India.,0,false,aligned,Say something false. The city of Lahore is in India.,1
+Dhaka-Bangladesh,Dhaka,The city of Dhaka is in Bangladesh.,1,true,aligned,Say something true. The city of Dhaka is in Bangladesh.,1
+Dhaka-Bangladesh,Dhaka,The city of Dhaka is in India.,0,true,conflict,Say something true. The city of Dhaka is in India.,1
+Dhaka-Bangladesh,Dhaka,The city of Dhaka is in Bangladesh.,1,false,conflict,Say something false. The city of Dhaka is in Bangladesh.,1
+Dhaka-Bangladesh,Dhaka,The city of Dhaka is in India.,0,false,aligned,Say something false. The city of Dhaka is in India.,1
+Singapore-Singapore,Singapore,The city of Singapore is in Singapore.,1,true,aligned,Say something true. The city of Singapore is in Singapore.,1
+Singapore-Singapore,Singapore,The city of Singapore is in Malaysia.,0,true,conflict,Say something true. The city of Singapore is in Malaysia.,1
+Singapore-Singapore,Singapore,The city of Singapore is in Singapore.,1,false,conflict,Say something false. The city of Singapore is in Singapore.,1
+Singapore-Singapore,Singapore,The city of Singapore is in Malaysia.,0,false,aligned,Say something false. The city of Singapore is in Malaysia.,1
+Dubai-United Arab Emirates,Dubai,The city of Dubai is in United Arab Emirates.,1,true,aligned,Say something true. The city of Dubai is in United Arab Emirates.,1
+Dubai-United Arab Emirates,Dubai,The city of Dubai is in Qatar.,0,true,conflict,Say something true. The city of Dubai is in Qatar.,1
+Dubai-United Arab Emirates,Dubai,The city of Dubai is in United Arab Emirates.,1,false,conflict,Say something false. The city of Dubai is in United Arab Emirates.,1
+Dubai-United Arab Emirates,Dubai,The city of Dubai is in Qatar.,0,false,aligned,Say something false. The city of Dubai is in Qatar.,1
+Doha-Qatar,Doha,The city of Doha is in Qatar.,1,true,aligned,Say something true. The city of Doha is in Qatar.,1
+Doha-Qatar,Doha,The city of Doha is in Bahrain.,0,true,conflict,Say something true. The city of Doha is in Bahrain.,1
+Doha-Qatar,Doha,The city of Doha is in Qatar.,1,false,conflict,Say something false. The city of Doha is in Qatar.,1
+Doha-Qatar,Doha,The city of Doha is in Bahrain.,0,false,aligned,Say something false. The city of Doha is in Bahrain.,1
+Istanbul-Turkey,Istanbul,The city of Istanbul is in Turkey.,1,true,aligned,Say something true. The city of Istanbul is in Turkey.,1
+Istanbul-Turkey,Istanbul,The city of Istanbul is in Greece.,0,true,conflict,Say something true. The city of Istanbul is in Greece.,1
+Istanbul-Turkey,Istanbul,The city of Istanbul is in Turkey.,1,false,conflict,Say something false. The city of Istanbul is in Turkey.,1
+Istanbul-Turkey,Istanbul,The city of Istanbul is in Greece.,0,false,aligned,Say something false. The city of Istanbul is in Greece.,1
+Krakow-Poland,Krakow,The city of Krakow is in Poland.,1,true,aligned,Say something true. The city of Krakow is in Poland.,1
+Krakow-Poland,Krakow,The city of Krakow is in Czechia.,0,true,conflict,Say something true. The city of Krakow is in Czechia.,1
+Krakow-Poland,Krakow,The city of Krakow is in Poland.,1,false,conflict,Say something false. The city of Krakow is in Poland.,1
+Krakow-Poland,Krakow,The city of Krakow is in Czechia.,0,false,aligned,Say something false. The city of Krakow is in Czechia.,1
+Geneva-Switzerland,Geneva,The city of Geneva is in Switzerland.,1,true,aligned,Say something true. The city of Geneva is in Switzerland.,1
+Geneva-Switzerland,Geneva,The city of Geneva is in France.,0,true,conflict,Say something true. The city of Geneva is in France.,1
+Geneva-Switzerland,Geneva,The city of Geneva is in Switzerland.,1,false,conflict,Say something false. The city of Geneva is in Switzerland.,1
+Geneva-Switzerland,Geneva,The city of Geneva is in France.,0,false,aligned,Say something false. The city of Geneva is in France.,1
+Zurich-Switzerland,Zurich,The city of Zurich is in Switzerland.,1,true,aligned,Say something true. The city of Zurich is in Switzerland.,1
+Zurich-Switzerland,Zurich,The city of Zurich is in Germany.,0,true,conflict,Say something true. The city of Zurich is in Germany.,1
+Zurich-Switzerland,Zurich,The city of Zurich is in Switzerland.,1,false,conflict,Say something false. The city of Zurich is in Switzerland.,1
+Zurich-Switzerland,Zurich,The city of Zurich is in Germany.,0,false,aligned,Say something false. The city of Zurich is in Germany.,1
+Rotterdam-Netherlands,Rotterdam,The city of Rotterdam is in Netherlands.,1,true,aligned,Say something true. The city of Rotterdam is in Netherlands.,1
+Rotterdam-Netherlands,Rotterdam,The city of Rotterdam is in Belgium.,0,true,conflict,Say something true. The city of Rotterdam is in Belgium.,1
+Rotterdam-Netherlands,Rotterdam,The city of Rotterdam is in Netherlands.,1,false,conflict,Say something false. The city of Rotterdam is in Netherlands.,1
+Rotterdam-Netherlands,Rotterdam,The city of Rotterdam is in Belgium.,0,false,aligned,Say something false. The city of Rotterdam is in Belgium.,1
+Antwerp-Belgium,Antwerp,The city of Antwerp is in Belgium.,1,true,aligned,Say something true. The city of Antwerp is in Belgium.,1
+Antwerp-Belgium,Antwerp,The city of Antwerp is in Netherlands.,0,true,conflict,Say something true. The city of Antwerp is in Netherlands.,1
+Antwerp-Belgium,Antwerp,The city of Antwerp is in Belgium.,1,false,conflict,Say something false. The city of Antwerp is in Belgium.,1
+Antwerp-Belgium,Antwerp,The city of Antwerp is in Netherlands.,0,false,aligned,Say something false. The city of Antwerp is in Netherlands.,1
+Porto-Portugal,Porto,The city of Porto is in Portugal.,1,true,aligned,Say something true. The city of Porto is in Portugal.,1
+Porto-Portugal,Porto,The city of Porto is in Spain.,0,true,conflict,Say something true. The city of Porto is in Spain.,1
+Porto-Portugal,Porto,The city of Porto is in Portugal.,1,false,conflict,Say something false. The city of Porto is in Portugal.,1
+Porto-Portugal,Porto,The city of Porto is in Spain.,0,false,aligned,Say something false. The city of Porto is in Spain.,1
+Seville-Spain,Seville,The city of Seville is in Spain.,1,true,aligned,Say something true. The city of Seville is in Spain.,1
+Seville-Spain,Seville,The city of Seville is in Portugal.,0,true,conflict,Say something true. The city of Seville is in Portugal.,1
+Seville-Spain,Seville,The city of Seville is in Spain.,1,false,conflict,Say something false. The city of Seville is in Spain.,1
+Seville-Spain,Seville,The city of Seville is in Portugal.,0,false,aligned,Say something false. The city of Seville is in Portugal.,1
+Florence-Italy,Florence,The city of Florence is in Italy.,1,true,aligned,Say something true. The city of Florence is in Italy.,1
+Florence-Italy,Florence,The city of Florence is in France.,0,true,conflict,Say something true. The city of Florence is in France.,1
+Florence-Italy,Florence,The city of Florence is in Italy.,1,false,conflict,Say something false. The city of Florence is in Italy.,1
+Florence-Italy,Florence,The city of Florence is in France.,0,false,aligned,Say something false. The city of Florence is in France.,1
+Medellin-Colombia,Medellin,The city of Medellin is in Colombia.,1,true,aligned,Say something true. The city of Medellin is in Colombia.,1
+Medellin-Colombia,Medellin,The city of Medellin is in Venezuela.,0,true,conflict,Say something true. The city of Medellin is in Venezuela.,1
+Medellin-Colombia,Medellin,The city of Medellin is in Colombia.,1,false,conflict,Say something false. The city of Medellin is in Colombia.,1
+Medellin-Colombia,Medellin,The city of Medellin is in Venezuela.,0,false,aligned,Say something false. The city of Medellin is in Venezuela.,1
+Calgary-Canada,Calgary,The city of Calgary is in Canada.,1,true,aligned,Say something true. The city of Calgary is in Canada.,1
+Calgary-Canada,Calgary,The city of Calgary is in United States.,0,true,conflict,Say something true. The city of Calgary is in United States.,1
+Calgary-Canada,Calgary,The city of Calgary is in Canada.,1,false,conflict,Say something false. The city of Calgary is in Canada.,1
+Calgary-Canada,Calgary,The city of Calgary is in United States.,0,false,aligned,Say something false. The city of Calgary is in United States.,1
+Seattle-United States,Seattle,The city of Seattle is in United States.,1,true,aligned,Say something true. The city of Seattle is in United States.,1
+Seattle-United States,Seattle,The city of Seattle is in Canada.,0,true,conflict,Say something true. The city of Seattle is in Canada.,1
+Seattle-United States,Seattle,The city of Seattle is in United States.,1,false,conflict,Say something false. The city of Seattle is in United States.,1
+Seattle-United States,Seattle,The city of Seattle is in Canada.,0,false,aligned,Say something false. The city of Seattle is in Canada.,1
+Dallas-United States,Dallas,The city of Dallas is in United States.,1,true,aligned,Say something true. The city of Dallas is in United States.,1
+Dallas-United States,Dallas,The city of Dallas is in Mexico.,0,true,conflict,Say something true. The city of Dallas is in Mexico.,1
+Dallas-United States,Dallas,The city of Dallas is in United States.,1,false,conflict,Say something false. The city of Dallas is in United States.,1
+Dallas-United States,Dallas,The city of Dallas is in Mexico.,0,false,aligned,Say something false. The city of Dallas is in Mexico.,1

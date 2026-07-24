@@ -1,0 +1,72 @@
+{
+  "registered_utc": "2026-07-24",
+  "phase": "H2 Phase 3 — conflict cells",
+  "model": "gemma-2-9b",
+  "layer": 17,
+  "probes": "FROZEN H1 cities probes (mm, lr), reloaded from results/probes/gemma-2-9b/, never retrained",
+  "state_at_registration": {
+    "conflict_cells_read": false,
+    "note": "Phases 0-2 complete. h2_02_canary.py filters to condition=='aligned' at load and deletes the remaining rows, so no conflict-cell score has been computed or observed at the time this file was written.",
+    "phase0": "98/100 base facts pass model_knows at 0.5 nats; neutral readout perfectly separates true from false (min true margin +0.556 > max false margin +0.291)",
+    "phase1": "acts (392, 42, 3584), end-of-statement token, all acceptance checks passed",
+    "phase2": "aligned-cell AUROC vs truth = 1.0000 for BOTH probes, CI [1.0000, 1.0000], plateau min 0.9623 (mm) / 0.9996 (lr). Gate PASSED."
+  },
+
+  "structural_fact_established_before_registration": {
+    "claim": "In the conflict cells frame == 1 - label for all 196 rows (verified). Therefore AUROC(score vs label) + AUROC(score vs frame) = 1 identically.",
+    "consequence": "Phase 3's 'two AUROCs' are one number and its complement, not two independent findings. The prediction below is stated on AUROC vs label only. The four outcomes still hold but collapse to reading a single value: high = tracks truth, near 0 = tracks frame, ~0.5 = neither survives the format.",
+    "consequence_for_phase4": "Frame-consistency (label == frame) is constant across every conflict row, so it cannot be regressed against within conflict cells. It becomes estimable only over the full 2x2, where label, frame and consistency are pairwise independent (98 per cell)."
+  },
+
+  "predictions": [
+    {
+      "id": "P-H2-1",
+      "status": "PRIMARY, directional",
+      "claim": "The frozen truth direction tracks ACTUAL TRUTH in the conflict cells, not the asserted position. Conflict-cell AUROC(score vs label) > 0.5 with the 95% bootstrap CI excluding 0.5, for BOTH mm and lr."
+    },
+    {
+      "id": "P-H2-2",
+      "status": "magnitude",
+      "claim": "Point estimate >= 0.85 for both probes."
+    },
+    {
+      "id": "P-H2-3",
+      "status": "degradation",
+      "claim": "The frame has a detectable but sub-dominant effect: conflict AUROC < aligned AUROC (1.0000) for at least one probe. If both come back at exactly 1.0000 the frame did nothing measurable at all."
+    },
+    {
+      "id": "P-H2-4",
+      "status": "probe comparison, weak",
+      "claim": "|AUROC_mm - AUROC_lr| <= 0.10. No confident directional prediction is registered here: MM's direction is causally motivated and may be more robust to a nuisance prefix, while H1 found LR >= MM on essentially every transfer cell. Recorded as genuinely open rather than guessed."
+    },
+    {
+      "id": "P-H2-5",
+      "status": "robustness",
+      "claim": "The direction of the effect (truth-tracking, AUROC > 0.5) holds at every plateau layer L17-31, for both probes."
+    },
+    {
+      "id": "P-H2-6",
+      "status": "magnitude collapse",
+      "claim": "Signed margins keep the correct sign per class in the conflict cells, and mean |margin| falls by less than 50% relative to the aligned cells. Recorded because a probe can keep its ranking (AUROC) while its margins collapse toward zero, and that would be a real finding AUROC alone would hide."
+    }
+  ],
+
+  "reasoning": [
+    "gemma-2-9b is a BASE model, not instruction-tuned. 'Say something false.' is context, not a command it has been trained to obey. This is the single strongest reason to expect the frame to be weak, and it is the reason the prediction is truth-tracking rather than frame-tracking.",
+    "The probe reads the end-of-statement token. The statement's own tokens are immediately adjacent; the frame is a short prefix several tokens earlier, with limited opportunity to overwrite the residual stream at that position.",
+    "Phase 0 established that under neutral questioning the model reads all 98 surviving facts correctly, with perfect separation. The knowledge is present and unambiguous.",
+    "H1 established that the 9B truth direction is exceptionally strong (cross-topic signed AUROC 0.9882 mm / 0.9939 lr) and that its failures are structured inversions rather than degradation."
+  ],
+
+  "falsification_criteria": {
+    "P-H2-1 REFUTED": "AUROC(score vs label) < 0.5 for either probe — the probe tracks the frame, meaning the frame shifted what the model represents as true.",
+    "P-H2-1 REFUTED (null form)": "95% CI spans 0.5 for both probes — neither representation dominates, or the design is data-limited at 98 per cell. Report as such; do not read a point estimate through a CI that includes chance.",
+    "P-H2-2 REFUTED": "AUROC in [0.5, 0.85) — truth-tracking survives but is substantially more degraded than predicted. P-H2-1 would still stand.",
+    "P-H2-3 REFUTED": "both probes return exactly 1.0000, i.e. the frame has no measurable effect on the representation whatsoever.",
+    "P-H2-4 REFUTED": "|AUROC_mm - AUROC_lr| > 0.10.",
+    "P-H2-5 REFUTED": "any plateau layer flips below 0.5 for either probe.",
+    "P-H2-6 REFUTED": "mean |margin| in conflict cells falls by 50% or more relative to aligned, or a class mean takes the wrong sign."
+  },
+
+  "interpretive_limit_shipped_regardless": "This result is informative about which representation is ACTIVE, not about intent. A probe tracking actual truth under a 'say something false' frame is consistent with the model representing the falsehood as false while framed to assert it (the interesting reading) AND equally consistent with the frame simply failing to shift anything — and for a base model the latter is a live possibility that this design cannot exclude. A probe tracking the frame would be consistent with the frame genuinely altering represented belief, in which case no lie is occurring. Probe output alone cannot separate these. This is not a deception detector and must never be reported as one."
+}

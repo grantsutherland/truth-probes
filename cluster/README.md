@@ -10,6 +10,9 @@ Ordered so that nothing network-bound or CPU-bound ever holds a GPU.
 | 3 | `verify_model` smoke test | **interactive** `gpu_devel` | `03_verify.sh` |
 | 4 | Extract activations (all 42 layers) | GPU batch job | `04a_extract_devel.sbatch` (preferred) or `04_extract.sbatch` |
 | 5 | Layer sweep + commit chosen layer | CPU batch job | `05_sweep.sbatch` |
+| 6 | Analyses (02, 03, 03b + aux) | CPU batch job | `06_analysis.sbatch` |
+| 7 | NIE causal experiment | GPU batch job | `07_nie.sbatch` |
+| 8 | H2 Phase 0 — `model_knows` filter | GPU batch job | `08_h2_model_knows.sbatch` |
 
 **Queue note.** The `gpu` partition is badly backlogged — 462 pending against 117
 running when this was written, projecting a ~2-day wait, and identical for a40,
@@ -129,3 +132,33 @@ sbatch --dependency=afterok:<extract_jobid> cluster/05_sweep.sbatch
 Then read `results/layer_sweep.json` for the 9B `chosen_layer`. Nothing needs
 editing afterwards: every downstream script derives its layer from that file via
 `src/config.py`.
+
+## Step 8 — H2 Phase 0 (`model_knows`)
+
+```
+sbatch cluster/08_h2_model_knows.sbatch          # GPU: 200 forward passes
+# then, on the login node, once you have looked at the distribution:
+python scripts/h2_00_model_knows.py --phase filter --threshold <T>
+```
+
+H2 runs on **9B only** (`h2plan.txt` records why). Phase 0 asks which base facts
+the model reliably knows under neutral, frame-free questioning, because framing
+the model to assert the negation of a fact it does not hold is not inducing a
+lie — such a fact would add noise to the conflict cells while looking like a
+real trial.
+
+The two phases are split for the same reason `01` splits extract from sweep: the
+margin threshold is supposed to be set *from* the distribution, so it cannot be
+chosen before the GPU job runs, and a retune must not re-queue that job. The GPU
+phase writes per-statement margins to
+`results/<model>/h2_model_knows_margins.json`; the CPU phase applies a threshold,
+prints the attrition ladder, writes `model_knows` into `data/induced_lies.csv`
+and the decision to `results/<model>/h2_model_knows.json`. The margins file is
+the source of truth — the CSV column is derived and regenerable at any threshold.
+
+Note the readout differs from the NIE experiment's: the neutral prompt ends at
+`Answer:` rather than `This statement is:`, so the `" TRUE"` / `" FALSE"`
+single-token assertion is re-run and the top-5 continuations are printed for two
+example prompts. Same failure mode as before — unspaced ids would score a
+continuation the model never emits, and every margin would read as "the model
+doesn't know this fact" rather than as a bug.
