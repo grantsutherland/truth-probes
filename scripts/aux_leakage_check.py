@@ -18,10 +18,11 @@ import sys
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import config                     # noqa: E402
 import data  # noqa: E402
 
 SPLIT_RATIO, SEED = 0.8, 0
-_RESULTS = os.path.join(os.path.dirname(__file__), "..", "results")
+_RESULTS = config.RESULTS_DIR
 OUT_JSON = os.path.join(_RESULTS, "leakage_check.json")
 
 

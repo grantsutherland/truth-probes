@@ -27,15 +27,16 @@ import sys
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import config                 # noqa: E402
 import data                   # noqa: E402
 from probes import MMProbe    # noqa: E402
 
-LAYERS = [11, 13, 15]
+LAYERS = config.spot_layers()
 SPLIT_RATIO, SEED = 0.8, 0
 PAIRS = [("cities", "neg_cities"), ("sp_en_trans", "neg_sp_en_trans"),
          ("larger_than", "smaller_than")]
 
-_RESULTS = os.path.join(os.path.dirname(__file__), "..", "results")
+_RESULTS = config.RESULTS_DIR
 OUT_JSON = os.path.join(_RESULTS, "negation_mechanism.json")
 
 

@@ -18,17 +18,18 @@ import sys
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import config                        # noqa: E402
 import data                          # noqa: E402
 from probes import LRProbe, MMProbe  # noqa: E402
 
-LAYERS = list(range(11, 18))         # the accuracy plateau
+LAYERS = config.plateau_layers()     # the accuracy plateau, derived from the sweep
 LR_KWARGS = dict(lr=1e-2, epochs=2000, weight_decay=1e-2)
 SPLIT_RATIO, SEED = 0.8, 0
 DATASETS = data.DATASETS
 AFFIRMATIVE = ["cities", "sp_en_trans", "larger_than", "smaller_than"]
 COMPLEMENT = {"larger_than->smaller_than", "smaller_than->larger_than"}
 
-_RESULTS = os.path.join(os.path.dirname(__file__), "..", "results")
+_RESULTS = config.RESULTS_DIR
 OUT_JSON = os.path.join(_RESULTS, "transfer_by_layer.json")
 
 
@@ -93,7 +94,7 @@ def main():
               f"{'crosstopic':>10}  {'cities->neg_cities':>18}")
         for L in LAYERS:
             r = out["per_layer"][pt][str(L)]
-            star = " *sel" if L == 13 else ""
+            star = " *sel" if L == config.chosen_layer() else ""
             print(f"  {L:5d}  {r['bands']['ge0.9']:5d} {r['bands']['lt0.1']:5d} "
                   f"{r['bands']['0.3-0.7']:7d}  {r['crosstopic_aff_excl_complement']:10.3f}  "
                   f"{r['cities_to_neg_cities']:18.3f}{star}")

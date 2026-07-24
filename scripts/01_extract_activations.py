@@ -2,7 +2,7 @@
 
 Three phases:
   1. EXTRACT  every layer for every dataset in one forward pass each, cached to
-     results/activations/sweep/ (the slow step; skipped if already cached).
+     results/activations/<model>/sweep/ (the slow step; skipped if already cached).
   2. SWEEP    train MM and LR probes at each layer on each SWEEP_DATASET, evaluate
      on a held-out split, and record both accuracy curves (averaged across those
      datasets). The chosen layer is selected on the MM curve — MM's direction is
@@ -11,24 +11,37 @@ Three phases:
   3. COMMIT   slice every dataset's sweep cache at the chosen layer and save the
      canonical single-layer caches that 02/03/04 consume.
 
-Run once. After this, results/activations/<dataset>.pt holds the chosen layer,
-and results/layer_sweep.json records the sweep so the choice is reproducible.
+Phase 1 needs the GPU. Phases 2-3 are pure probe training off the cached tensors
+and never touch the model — at 9B the sweep is 42 layers x 6 datasets x 2 probes
+with LR at 2000 epochs, which is many minutes of holding an idle H100 if run in
+the same process. So the phases are separately runnable:
+
+    python scripts/01_extract_activations.py --phase extract   # GPU job
+    python scripts/01_extract_activations.py --phase sweep     # CPU job
+    python scripts/01_extract_activations.py                   # both (local dev)
+
+After this, results/activations/<model>/<dataset>.pt holds the chosen layer, and
+results/layer_sweep.json records the sweep so the choice is reproducible.
 """
 
+import argparse
 import json
 import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import config                     # noqa: E402
 import data                       # noqa: E402
+import lastping                   # noqa: E402
 from activations import load_model, verify_model, extract_activations  # noqa: E402
 from probes import MMProbe        # noqa: E402
 from probes import LRProbe
 
 # --------------------------------------------------------------------------- #
-# CONFIG — the one place to change model / layer / split / position.
+# CONFIG — split / position live here; the model is named in src/config.py so
+# every script agrees on which model's caches they are reading.
 # --------------------------------------------------------------------------- #
-MODEL_NAME = "gemma-2-2b"     # "gemma-2-9b" for the final run (on a cluster)
+MODEL_NAME = config.MODEL_NAME
 DATASETS = data.DATASETS
 TOKEN_POS = -1                # end-of-statement token
 BATCH_SIZE = 16
@@ -44,14 +57,14 @@ SELECTION_PROBE = "mm"        # curve the chosen layer is selected on
 SPLIT_RATIO = 0.8
 SEED = 0
 
-_RESULTS = os.path.join(os.path.dirname(__file__), "..", "results")
+_RESULTS = config.RESULTS_DIR
 SWEEP_JSON = os.path.join(_RESULTS, "layer_sweep.json")
 
 
 # --------------------------------------------------------------------------- #
 def extract_phase(model, layers):
     """Extract all `layers` for every dataset; skip datasets already cached."""
-    for name in DATASETS:
+    for i, name in enumerate(DATASETS, 1):
         if data.sweep_exists(name):
             print(f"  [skip] {name} (sweep cache exists)")
             continue
@@ -62,6 +75,14 @@ def extract_phase(model, layers):
                                    token_pos=TOKEN_POS, batch_size=BATCH_SIZE)
         data.save_sweep(name, acts, labels, layers, TOKEN_POS, MODEL_NAME)
         print(f"    saved {tuple(acts.shape)}")
+        # Progress for the job monitor. No-op when unconfigured, never raises.
+        # IngestHeartbeat accepts only run_id / step / metric / text — the API
+        # rejects anything else with a 422, so extra context goes in `text`.
+        lastping.heartbeat(
+            step=i,
+            metric=str(len(texts)),
+            text=f"extracted {name} ({i}/{len(DATASETS)}) @ {MODEL_NAME}",
+        )
 
 
 def sweep_phase(layers):
@@ -109,17 +130,32 @@ def commit_phase(best_layer):
         print(f"  committed {name} @ layer {best_layer}: {tuple(acts[:, idx, :].shape)}")
 
 
-def main():
-    print(f"== 01 extract | model={MODEL_NAME} ==")
+def run_extract():
+    """Phase 1 (GPU): cache every layer for every dataset."""
     model = load_model(MODEL_NAME, device=DEVICE)
     info = verify_model(model)
     print(f"  verified: {info['n_layers']} layers, d_model={info['d_model']}, "
           f"device={info['device']}")
 
     layers = list(range(info["n_layers"])) if SWEEP_LAYERS is None else list(SWEEP_LAYERS)
-
     print("\n[1/3] extract")
     extract_phase(model, layers)
+
+
+def run_sweep():
+    """Phases 2-3 (CPU): sweep the cached layers, commit the chosen one.
+
+    Takes the layer list from the cache metadata rather than from a loaded model,
+    so this runs with no GPU and no model download.
+    """
+    missing = [n for n in DATASETS if not data.sweep_exists(n)]
+    if missing:
+        raise FileNotFoundError(
+            f"No sweep cache for {missing} under model {MODEL_NAME!r}. "
+            f"Run --phase extract first."
+        )
+    _, _, meta = data.load_sweep(DATASETS[0])
+    layers = list(meta["layers"]) if SWEEP_LAYERS is None else list(SWEEP_LAYERS)
 
     print("\n[2/3] sweep")
     best_layer, mm_table, lr_table = sweep_phase(layers)
@@ -150,6 +186,20 @@ def main():
 
     print("\n[3/3] commit")
     commit_phase(best_layer)
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--phase", choices=["extract", "sweep", "all"], default="all",
+                    help="extract = GPU forward passes; sweep = CPU probe "
+                         "training + commit; all = both in one process.")
+    args = ap.parse_args()
+
+    print(f"== 01 [{args.phase}] | model={MODEL_NAME} ==")
+    if args.phase in ("extract", "all"):
+        run_extract()
+    if args.phase in ("sweep", "all"):
+        run_sweep()
     print("\nDone.")
 
 

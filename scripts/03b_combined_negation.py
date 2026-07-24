@@ -31,10 +31,11 @@ import sys
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import config                        # noqa: E402
 import data                          # noqa: E402
 from probes import LRProbe, MMProbe  # noqa: E402
 
-LAYERS = [11, 13, 15]
+LAYERS = config.spot_layers()
 LR_KWARGS = dict(lr=1e-2, epochs=2000, weight_decay=1e-2)
 SPLIT_RATIO, SEED = 0.8, 0
 DATASETS = data.DATASETS
@@ -47,7 +48,7 @@ BASELINE_OF = {"cities+neg_cities": "cities",
 CROSSTOPIC = {"cities+neg_cities": "neg_sp_en_trans",
               "sp_en_trans+neg_sp_en_trans": "neg_cities"}
 
-_RESULTS = os.path.join(os.path.dirname(__file__), "..", "results")
+_RESULTS = config.RESULTS_DIR
 OUT_JSON = os.path.join(_RESULTS, "combined_negation.json")
 
 

@@ -23,10 +23,17 @@ import os
 import pandas as pd
 import torch
 
+import config
+
 # Repo root = parent of this file's directory (src/).
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(_ROOT, "data")
-CACHE_DIR = os.path.join(_ROOT, "results", "activations")
+# Caches are scoped BY MODEL. Layer indices and d_model are model-specific, and
+# `sweep_exists` is what 01 uses to skip already-extracted datasets — an unscoped
+# path meant a 2B cache would satisfy that check during a 9B run, silently
+# skipping extraction and leaving every downstream number computed on 2304-dim
+# 2B activations under a 9B label. Scoping keeps both models' caches side by side.
+CACHE_DIR = os.path.join(_ROOT, "results", "activations", config.MODEL_NAME)
 # Intermediate all-layer caches from the extraction sweep (Option 1): extract
 # every layer once here, pick the best layer offline, then commit that single
 # layer to CACHE_DIR via save_activations. These are throwaway once a layer is chosen.
@@ -250,7 +257,7 @@ def _sweep_path(name):
 # --------------------------------------------------------------------------- #
 # Trained probes  (02 saves; 03/04 reload without retraining)
 # --------------------------------------------------------------------------- #
-PROBE_DIR = os.path.join(_ROOT, "results", "probes")
+PROBE_DIR = os.path.join(_ROOT, "results", "probes", config.MODEL_NAME)
 
 
 def save_probe(probe, probe_type, dataset, layer, model_name, mean_offset=None):

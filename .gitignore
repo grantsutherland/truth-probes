@@ -18,3 +18,6 @@ results/probes/
 
 # Keep results/*.json (the findings that back the write-up) — they are small
 # and tracked. Do NOT ignore them.
+
+# SLURM job logs (the sbatch scripts themselves are tracked).
+cluster/logs/

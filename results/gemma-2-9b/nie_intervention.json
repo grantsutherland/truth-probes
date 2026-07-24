@@ -1,0 +1,72 @@
+{
+  "layer": 17,
+  "test_set": "sp_en_trans",
+  "n_test": 352,
+  "baseline": {
+    "PD_plus": 2.0491610443727537,
+    "PD_minus": -3.880650258877061,
+    "gap": 5.9298113032498145
+  },
+  "train_sets": {
+    "larger_than": {
+      "NIE_false_to_true": 0.017723905967961615,
+      "NIE_true_to_false": 0.009847530196827827,
+      "shift_false_to_true": 0.10509941794655564,
+      "shift_true_to_false": -0.05839399587024352,
+      "PD_plus_star": 1.9907670485025102,
+      "PD_minus_star": -3.775550840930505,
+      "theta_norm": 25.71331024169922,
+      "cos_theta_to_test_truth_dir": 0.1681557297706604
+    },
+    "larger_than+smaller_than": {
+      "NIE_false_to_true": 0.018781281512535192,
+      "NIE_true_to_false": 0.009072753555738205,
+      "shift_false_to_true": 0.11136945540254795,
+      "shift_true_to_false": -0.05379971658641636,
+      "PD_plus_star": 1.9953613277863373,
+      "PD_minus_star": -3.769280803474513,
+      "theta_norm": 20.057432174682617,
+      "cos_theta_to_test_truth_dir": 0.18603016436100006
+    },
+    "cities": {
+      "NIE_false_to_true": 0.10008691086419172,
+      "NIE_true_to_false": 0.09407741707855537,
+      "shift_false_to_true": 0.5934964953498407,
+      "shift_true_to_false": -0.5578613311729648,
+      "PD_plus_star": 1.491299713199789,
+      "PD_minus_star": -3.28715376352722,
+      "theta_norm": 68.48174285888672,
+      "cos_theta_to_test_truth_dir": 0.4020187556743622
+    },
+    "cities+neg_cities": {
+      "NIE_false_to_true": 0.06738158146467062,
+      "NIE_true_to_false": 0.005206352979302375,
+      "shift_false_to_true": 0.399560063400052,
+      "shift_true_to_false": -0.030872690745375575,
+      "PD_plus_star": 2.018288353627378,
+      "PD_minus_star": -3.481090195477009,
+      "theta_norm": 50.9522705078125,
+      "cos_theta_to_test_truth_dir": 0.309878945350647
+    },
+    "larger_than+smaller_than|norm=larger_than": {
+      "NIE_false_to_true": 0.024921474439721578,
+      "NIE_true_to_false": 0.013695217033190757,
+      "shift_false_to_true": 0.14777964082631234,
+      "shift_true_to_false": -0.08121005276387394,
+      "PD_plus_star": 1.9679509916088798,
+      "PD_minus_star": -3.7328706180507485,
+      "theta_norm": 25.850706100463867,
+      "cos_theta_to_test_truth_dir": 0.1860092133283615
+    },
+    "cities+neg_cities|norm=cities": {
+      "NIE_false_to_true": 0.08814734126509136,
+      "NIE_true_to_false": 0.012823123723694773,
+      "shift_false_to_true": 0.5226971005851575,
+      "shift_true_to_false": -0.07603870399973611,
+      "PD_plus_star": 1.9731223403730176,
+      "PD_minus_star": -3.3579531582919033,
+      "theta_norm": 68.44481658935547,
+      "cos_theta_to_test_truth_dir": 0.3098384737968445
+    }
+  }
+}

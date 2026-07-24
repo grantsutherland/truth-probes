@@ -25,6 +25,7 @@ import sys
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import config                     # noqa: E402
 import data                          # noqa: E402
 from probes import LRProbe, MMProbe  # noqa: E402
 
@@ -34,7 +35,7 @@ SEED = 0
 PAIRS = [("cities", "neg_cities"), ("sp_en_trans", "neg_sp_en_trans")]
 INVOLVED = ["cities", "neg_cities", "sp_en_trans", "neg_sp_en_trans"]
 
-_RESULTS = os.path.join(os.path.dirname(__file__), "..", "results")
+_RESULTS = config.RESULTS_DIR
 OUT_JSON = os.path.join(_RESULTS, "negation_by_layer.json")
 
 

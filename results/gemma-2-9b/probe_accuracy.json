@@ -1,0 +1,45 @@
+{
+  "layer": 17,
+  "split_ratio": 0.8,
+  "seed": 0,
+  "centered": false,
+  "lr_hparams": {
+    "lr": 0.01,
+    "epochs": 2000,
+    "weight_decay": 0.01
+  },
+  "accuracy": {
+    "cities": {
+      "mm": 0.9765886068344116,
+      "lr": 1.0
+    },
+    "neg_cities": {
+      "mm": 1.0,
+      "lr": 1.0
+    },
+    "sp_en_trans": {
+      "mm": 1.0,
+      "lr": 1.0
+    },
+    "neg_sp_en_trans": {
+      "mm": 1.0,
+      "lr": 1.0
+    },
+    "larger_than": {
+      "mm": 1.0,
+      "lr": 1.0
+    },
+    "smaller_than": {
+      "mm": 0.997474730014801,
+      "lr": 1.0
+    }
+  },
+  "cos_mm_lr": {
+    "cities": 0.772350549697876,
+    "neg_cities": 0.7982882857322693,
+    "sp_en_trans": 0.8068621158599854,
+    "neg_sp_en_trans": 0.8789545297622681,
+    "larger_than": 0.9528199434280396,
+    "smaller_than": 0.9459512829780579
+  }
+}

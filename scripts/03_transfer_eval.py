@@ -26,6 +26,7 @@ import sys
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import config                     # noqa: E402
 import data  # noqa: E402
 
 DATASETS = data.DATASETS
@@ -40,7 +41,7 @@ AFFIRMATIVE = ["cities", "sp_en_trans", "larger_than", "smaller_than"]
 BANDS = [("<0.1", -0.01, 0.1), ("0.1-0.3", 0.1, 0.3), ("0.3-0.7", 0.3, 0.7),
          ("0.7-0.9", 0.7, 0.9), (">=0.9", 0.9, 1.01)]
 
-_RESULTS = os.path.join(os.path.dirname(__file__), "..", "results")
+_RESULTS = config.RESULTS_DIR
 OUT_JSON = os.path.join(_RESULTS, "transfer.json")
 
 

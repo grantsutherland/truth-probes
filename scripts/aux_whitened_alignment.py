@@ -21,6 +21,7 @@ import sys
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import config                     # noqa: E402
 import data                          # noqa: E402
 from probes import LRProbe, MMProbe  # noqa: E402
 
@@ -29,7 +30,7 @@ RIDGES = [1e-3, 1e-2, 1e-1, 1.0]
 SPLIT_RATIO = 0.8
 SEED = 0
 
-_RESULTS = os.path.join(os.path.dirname(__file__), "..", "results")
+_RESULTS = config.RESULTS_DIR
 OUT_JSON = os.path.join(_RESULTS, "whitened_alignment.json")
 
 CONCLUSION = (

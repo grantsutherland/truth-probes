@@ -1,0 +1,69 @@
+{
+  "layers": [
+    17,
+    19,
+    21
+  ],
+  "pairs": {
+    "cities+neg_cities": {
+      "17": {
+        "cos_AB": -0.07645764201879501,
+        "norm_ratio": 0.682279646396637,
+        "combo_auroc_own_A": 0.994299308735075,
+        "combo_auroc_own_B": 1.0
+      },
+      "19": {
+        "cos_AB": -0.02224702015519142,
+        "norm_ratio": 0.6996506452560425,
+        "combo_auroc_own_A": 0.9972618726995242,
+        "combo_auroc_own_B": 1.0
+      },
+      "21": {
+        "cos_AB": -0.0073824794963002205,
+        "norm_ratio": 0.7071211338043213,
+        "combo_auroc_own_A": 1.0,
+        "combo_auroc_own_B": 1.0
+      }
+    },
+    "sp_en_trans+neg_sp_en_trans": {
+      "17": {
+        "cos_AB": -0.4037238359451294,
+        "norm_ratio": 0.5460221767425537,
+        "combo_auroc_own_A": 1.0,
+        "combo_auroc_own_B": 1.0
+      },
+      "19": {
+        "cos_AB": -0.33074790239334106,
+        "norm_ratio": 0.5785784721374512,
+        "combo_auroc_own_A": 1.0,
+        "combo_auroc_own_B": 1.0
+      },
+      "21": {
+        "cos_AB": -0.16915497183799744,
+        "norm_ratio": 0.6448897123336792,
+        "combo_auroc_own_A": 1.0,
+        "combo_auroc_own_B": 1.0
+      }
+    },
+    "larger_than+smaller_than": {
+      "17": {
+        "cos_AB": 0.3010244071483612,
+        "norm_ratio": 0.806857168674469,
+        "combo_auroc_own_A": 1.0,
+        "combo_auroc_own_B": 1.0
+      },
+      "19": {
+        "cos_AB": 0.32074156403541565,
+        "norm_ratio": 0.8141451478004456,
+        "combo_auroc_own_A": 1.0,
+        "combo_auroc_own_B": 1.0
+      },
+      "21": {
+        "cos_AB": 0.46079128980636597,
+        "norm_ratio": 0.8580467104911804,
+        "combo_auroc_own_A": 1.0,
+        "combo_auroc_own_B": 1.0
+      }
+    }
+  }
+}

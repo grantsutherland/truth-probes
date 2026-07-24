@@ -1,0 +1,85 @@
+{
+  "layer": 17,
+  "split_ratio": 0.8,
+  "seed": 0,
+  "lr_hparams": {
+    "lr": 0.01,
+    "epochs": 2000,
+    "weight_decay": 0.01
+  },
+  "ridges": [
+    0.001,
+    0.01,
+    0.1,
+    1.0
+  ],
+  "per_dataset": {
+    "cities": {
+      "n_train": 1197,
+      "d_model": 3584,
+      "cos_mm_lr": 0.779570996761322,
+      "cos_iid_lr_by_ridge": {
+        "0.001": 0.17682459950447083,
+        "0.01": 0.25305384397506714,
+        "0.1": 0.42575550079345703,
+        "1.0": 0.6520631313323975
+      }
+    },
+    "neg_cities": {
+      "n_train": 1197,
+      "d_model": 3584,
+      "cos_mm_lr": 0.7985297441482544,
+      "cos_iid_lr_by_ridge": {
+        "0.001": 0.1698099970817566,
+        "0.01": 0.2218637615442276,
+        "0.1": 0.36983370780944824,
+        "1.0": 0.6218011379241943
+      }
+    },
+    "sp_en_trans": {
+      "n_train": 283,
+      "d_model": 3584,
+      "cos_mm_lr": 0.8130085468292236,
+      "cos_iid_lr_by_ridge": {
+        "0.001": 0.4891943633556366,
+        "0.01": 0.49169254302978516,
+        "0.1": 0.5134304165840149,
+        "1.0": 0.6244275569915771
+      }
+    },
+    "neg_sp_en_trans": {
+      "n_train": 283,
+      "d_model": 3584,
+      "cos_mm_lr": 0.8782165050506592,
+      "cos_iid_lr_by_ridge": {
+        "0.001": 0.38628050684928894,
+        "0.01": 0.38899075984954834,
+        "0.1": 0.41275742650032043,
+        "1.0": 0.5374331474304199
+      }
+    },
+    "larger_than": {
+      "n_train": 1584,
+      "d_model": 3584,
+      "cos_mm_lr": 0.9510285258293152,
+      "cos_iid_lr_by_ridge": {
+        "0.001": 0.14974159002304077,
+        "0.01": 0.278916597366333,
+        "0.1": 0.5463655591011047,
+        "1.0": 0.886044442653656
+      }
+    },
+    "smaller_than": {
+      "n_train": 1584,
+      "d_model": 3584,
+      "cos_mm_lr": 0.947040319442749,
+      "cos_iid_lr_by_ridge": {
+        "0.001": 0.16518595814704895,
+        "0.01": 0.31125909090042114,
+        "0.1": 0.5860799551010132,
+        "1.0": 0.9031612873077393
+      }
+    }
+  },
+  "conclusion": "The whitened (covariance-corrected) MM direction does NOT align with LR better than plain MM. Small ridge (real whitening) DEGRADES alignment; large ridge converges back to plain MM. Cause: d_model (2304) > n_train for every dataset, so the within-class covariance is rank-deficient and Sigma^-1 is noise-dominated. M&T's LR = Sigma^-1 theta_mm equivalence assumes n >> d, which is violated here. Therefore the LR-MM tilt cannot be attributed to the covariance correction at this model's dimensionality with these dataset sizes."
+}

@@ -1,0 +1,748 @@
+{
+  "layers": [
+    17,
+    19,
+    21
+  ],
+  "protocol": "held-out 20% (seed 0)",
+  "per_layer": {
+    "17": {
+      "mm": {
+        "baseline": {
+          "sp_en_trans": {
+            "cities": {
+              "signed": 0.9995511266720531,
+              "folded": 0.9995511266720531
+            },
+            "neg_cities": {
+              "signed": 0.8214830774755364,
+              "folded": 0.8214830774755364
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9978209598031174,
+              "folded": 0.9978209598031174
+            },
+            "smaller_than": {
+              "signed": 0.9860541427399507,
+              "folded": 0.9860541427399507
+            }
+          },
+          "cities": {
+            "cities": {
+              "signed": 0.9995062393392584,
+              "folded": 0.9995062393392584
+            },
+            "neg_cities": {
+              "signed": 0.21469611275697997,
+              "folded": 0.78530388724302
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.0031746031746031746,
+              "folded": 0.9968253968253968
+            },
+            "larger_than": {
+              "signed": 0.9492411812961444,
+              "folded": 0.9492411812961444
+            },
+            "smaller_than": {
+              "signed": 0.9547272354388844,
+              "folded": 0.9547272354388844
+            }
+          }
+        },
+        "combo": {
+          "cities+neg_cities": {
+            "cities": {
+              "signed": 0.994299308735075,
+              "folded": 0.994299308735075
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.9857142857142858,
+              "folded": 0.9857142857142858
+            },
+            "larger_than": {
+              "signed": 0.9870283018867925,
+              "folded": 0.9870283018867925
+            },
+            "smaller_than": {
+              "signed": 0.9891560705496308,
+              "folded": 0.9891560705496308
+            }
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cities": {
+              "signed": 0.9999551126672053,
+              "folded": 0.9999551126672053
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9834392945036915,
+              "folded": 0.9834392945036915
+            },
+            "smaller_than": {
+              "signed": 0.976825266611977,
+              "folded": 0.976825266611977
+            }
+          }
+        },
+        "direction_cosines": {
+          "cities+neg_cities": {
+            "cos_combo_A": 0.6054894328117371,
+            "cos_combo_B": 0.7466668486595154,
+            "cos_A_B": -0.07645764201879501
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cos_combo_A": 0.5441707968711853,
+            "cos_combo_B": 0.5478330850601196,
+            "cos_A_B": -0.4037238359451294
+          }
+        }
+      },
+      "lr": {
+        "baseline": {
+          "sp_en_trans": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 0.6442678876021187,
+              "folded": 0.6442678876021187
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9869770303527482,
+              "folded": 0.9869770303527482
+            },
+            "smaller_than": {
+              "signed": 0.9753896636587367,
+              "folded": 0.9753896636587367
+            }
+          },
+          "cities": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 0.12213843253433881,
+              "folded": 0.8778615674656611
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.996052091878589,
+              "folded": 0.996052091878589
+            },
+            "smaller_than": {
+              "signed": 0.9997436423297785,
+              "folded": 0.9997436423297785
+            }
+          }
+        },
+        "combo": {
+          "cities+neg_cities": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9998461853978671,
+              "folded": 0.9998461853978671
+            },
+            "smaller_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            }
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9602901968826907,
+              "folded": 0.9602901968826907
+            },
+            "smaller_than": {
+              "signed": 0.9865924938474159,
+              "folded": 0.9865924938474159
+            }
+          }
+        },
+        "direction_cosines": {
+          "cities+neg_cities": {
+            "cos_combo_A": 0.6992782950401306,
+            "cos_combo_B": 0.5337998867034912,
+            "cos_A_B": -0.18487894535064697
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cos_combo_A": 0.5685858130455017,
+            "cos_combo_B": 0.5165709257125854,
+            "cos_A_B": -0.36048734188079834
+          }
+        }
+      }
+    },
+    "19": {
+      "mm": {
+        "baseline": {
+          "sp_en_trans": {
+            "cities": {
+              "signed": 0.9972618726995242,
+              "folded": 0.9972618726995242
+            },
+            "neg_cities": {
+              "signed": 0.9886883921357393,
+              "folded": 0.9886883921357393
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9998461853978671,
+              "folded": 0.9998461853978671
+            },
+            "smaller_than": {
+              "signed": 0.9944626743232158,
+              "folded": 0.9944626743232158
+            }
+          },
+          "cities": {
+            "cities": {
+              "signed": 0.9965885627076039,
+              "folded": 0.9965885627076039
+            },
+            "neg_cities": {
+              "signed": 0.399856360535057,
+              "folded": 0.600143639464943
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.024603174603174603,
+              "folded": 0.9753968253968254
+            },
+            "larger_than": {
+              "signed": 0.9120436833470057,
+              "folded": 0.9120436833470057
+            },
+            "smaller_than": {
+              "signed": 0.814730311730927,
+              "folded": 0.814730311730927
+            }
+          }
+        },
+        "combo": {
+          "cities+neg_cities": {
+            "cities": {
+              "signed": 0.9972618726995242,
+              "folded": 0.9972618726995242
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9997436423297785,
+              "folded": 0.9997436423297785
+            },
+            "smaller_than": {
+              "signed": 0.9903609515996719,
+              "folded": 0.9903609515996719
+            }
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cities": {
+              "signed": 0.9997306760032318,
+              "folded": 0.9997306760032318
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9999743642329778,
+              "folded": 0.9999743642329778
+            },
+            "smaller_than": {
+              "signed": 0.998615668580804,
+              "folded": 0.998615668580804
+            }
+          }
+        },
+        "direction_cosines": {
+          "cities+neg_cities": {
+            "cos_combo_A": 0.6680567264556885,
+            "cos_combo_B": 0.72865891456604,
+            "cos_A_B": -0.02224702015519142
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cos_combo_A": 0.562989354133606,
+            "cos_combo_B": 0.5937106609344482,
+            "cos_A_B": -0.33074790239334106
+          }
+        }
+      },
+      "lr": {
+        "baseline": {
+          "sp_en_trans": {
+            "cities": {
+              "signed": 0.9999102253344107,
+              "folded": 0.9999102253344107
+            },
+            "neg_cities": {
+              "signed": 0.9914265194362151,
+              "folded": 0.9914265194362151
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.002380952380952381,
+              "folded": 0.9976190476190476
+            },
+            "larger_than": {
+              "signed": 0.9997436423297785,
+              "folded": 0.9997436423297785
+            },
+            "smaller_than": {
+              "signed": 0.9977440525020509,
+              "folded": 0.9977440525020509
+            }
+          },
+          "cities": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 0.6000089774665589,
+              "folded": 0.6000089774665589
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "smaller_than": {
+              "signed": 0.9995898277276456,
+              "folded": 0.9995898277276456
+            }
+          }
+        },
+        "combo": {
+          "cities+neg_cities": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "smaller_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            }
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cities": {
+              "signed": 0.9997755633360266,
+              "folded": 0.9997755633360266
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9959239130434783,
+              "folded": 0.9959239130434783
+            },
+            "smaller_than": {
+              "signed": 0.997077522559475,
+              "folded": 0.997077522559475
+            }
+          }
+        },
+        "direction_cosines": {
+          "cities+neg_cities": {
+            "cos_combo_A": 0.7585901021957397,
+            "cos_combo_B": 0.5608043670654297,
+            "cos_A_B": -0.06080238148570061
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cos_combo_A": 0.6030114889144897,
+            "cos_combo_B": 0.5615068078041077,
+            "cos_A_B": -0.2325349748134613
+          }
+        }
+      }
+    },
+    "21": {
+      "mm": {
+        "baseline": {
+          "sp_en_trans": {
+            "cities": {
+              "signed": 0.9996409013376425,
+              "folded": 0.9996409013376425
+            },
+            "neg_cities": {
+              "signed": 0.9918753927641619,
+              "folded": 0.9918753927641619
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.023809523809523808,
+              "folded": 0.9761904761904762
+            },
+            "larger_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "smaller_than": {
+              "signed": 0.9770047169811321,
+              "folded": 0.9770047169811321
+            }
+          },
+          "cities": {
+            "cities": {
+              "signed": 0.9983391686865967,
+              "folded": 0.9983391686865967
+            },
+            "neg_cities": {
+              "signed": 0.49744142203070296,
+              "folded": 0.502558577969297
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.0015873015873015873,
+              "folded": 0.9984126984126984
+            },
+            "larger_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "smaller_than": {
+              "signed": 0.9900533223954061,
+              "folded": 0.9900533223954061
+            }
+          }
+        },
+        "combo": {
+          "cities+neg_cities": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "smaller_than": {
+              "signed": 0.9988463904840033,
+              "folded": 0.9988463904840033
+            }
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cities": {
+              "signed": 0.999147140676901,
+              "folded": 0.999147140676901
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 0.9996923707957343,
+              "folded": 0.9996923707957343
+            },
+            "smaller_than": {
+              "signed": 0.9798502871205906,
+              "folded": 0.9798502871205906
+            }
+          }
+        },
+        "direction_cosines": {
+          "cities+neg_cities": {
+            "cos_combo_A": 0.6349453926086426,
+            "cos_combo_B": 0.7674803733825684,
+            "cos_A_B": -0.0073824794963002205
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cos_combo_A": 0.6191903352737427,
+            "cos_combo_B": 0.6691529154777527,
+            "cos_A_B": -0.16915497183799744
+          }
+        }
+      },
+      "lr": {
+        "baseline": {
+          "sp_en_trans": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 0.9917856180985726,
+              "folded": 0.9917856180985726
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.047619047619047616,
+              "folded": 0.9523809523809523
+            },
+            "larger_than": {
+              "signed": 0.999487284659557,
+              "folded": 0.999487284659557
+            },
+            "smaller_than": {
+              "signed": 0.9798759228876128,
+              "folded": 0.9798759228876128
+            }
+          },
+          "cities": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 0.5291318789837508,
+              "folded": 0.5291318789837508
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 0.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "smaller_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            }
+          }
+        },
+        "combo": {
+          "cities+neg_cities": {
+            "cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "smaller_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            }
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cities": {
+              "signed": 0.9976658586946764,
+              "folded": 0.9976658586946764
+            },
+            "neg_cities": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "neg_sp_en_trans": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "larger_than": {
+              "signed": 1.0,
+              "folded": 1.0
+            },
+            "smaller_than": {
+              "signed": 0.9858746923707957,
+              "folded": 0.9858746923707957
+            }
+          }
+        },
+        "direction_cosines": {
+          "cities+neg_cities": {
+            "cos_combo_A": 0.7645217776298523,
+            "cos_combo_B": 0.5488667488098145,
+            "cos_A_B": -0.06164729967713356
+          },
+          "sp_en_trans+neg_sp_en_trans": {
+            "cos_combo_A": 0.6505805253982544,
+            "cos_combo_B": 0.5549101829528809,
+            "cos_A_B": -0.16603758931159973
+          }
+        }
+      }
+    }
+  }
+}

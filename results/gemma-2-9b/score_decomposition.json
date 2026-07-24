@@ -1,0 +1,40 @@
+{
+  "model": "gemma-2-9b",
+  "layer": 17,
+  "combos": {
+    "cities+neg_cities": {
+      "test_set": "neg_sp_en_trans",
+      "identity_rel_error": 0.03101169876754284,
+      "cos_A_B": -0.07645764201879501,
+      "auroc_A_alone": 0.0031746031746031746,
+      "auroc_B_alone": 1.0,
+      "raw_norm_A": 68.25528717041016,
+      "raw_norm_B": 80.65900421142578,
+      "norm_ratio_A_over_B": 0.8462203053176477,
+      "score_sd_A": 11.91531753540039,
+      "score_sd_B": 16.3991641998291,
+      "effective_weight_A": 813.2834201053774,
+      "effective_weight_B": 1322.7402542578784,
+      "dominance_A_over_B": 0.6148474105081719,
+      "auroc_combo_reconstructed": 0.9857142857142858,
+      "auroc_combo_from_weighted_parts": 0.984920634920635
+    },
+    "sp_en_trans+neg_sp_en_trans": {
+      "test_set": "neg_cities",
+      "identity_rel_error": 0.008017202839255333,
+      "cos_A_B": -0.4037238359451294,
+      "auroc_A_alone": 0.8214830774755364,
+      "auroc_B_alone": 1.0,
+      "raw_norm_A": 85.51649475097656,
+      "raw_norm_B": 85.81696319580078,
+      "norm_ratio_A_over_B": 0.9964987289967524,
+      "score_sd_A": 4.179573059082031,
+      "score_sd_B": 15.81827163696289,
+      "effective_weight_A": 357.4224375683116,
+      "effective_weight_B": 1357.4760348904238,
+      "dominance_A_over_B": 0.2632992615572495,
+      "auroc_combo_reconstructed": 1.0,
+      "auroc_combo_from_weighted_parts": 1.0
+    }
+  }
+}
