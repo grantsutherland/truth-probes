@@ -1,0 +1,122 @@
+{
+  "model": "gemma-2-9b",
+  "layer": 17,
+  "probe_train_set": "cities",
+  "retrained": false,
+  "n_conflict_rows": 196,
+  "n_bootstrap": 10000,
+  "seed": 0,
+  "prereg_file": "results/h2_prereg_phase3.json",
+  "prereg_verdicts": {
+    "P-H2-1": "CONFIRMED",
+    "P-H2-2": "CONFIRMED",
+    "P-H2-3": "REFUTED (frame had no measurable effect)",
+    "P-H2-4": "CONFIRMED",
+    "P-H2-5": "CONFIRMED",
+    "P-H2-6": "CONFIRMED"
+  },
+  "auroc_vs_frame_is_complement": true,
+  "probes": {
+    "mm": {
+      "auroc_vs_truth": 1.0,
+      "auroc_vs_truth_ci95": [
+        1.0,
+        1.0
+      ],
+      "auroc_vs_frame": 0.0,
+      "cells": {
+        "conflict/frame=true(false stmt)": {
+          "n": 98,
+          "mean_margin": -18.92349624633789,
+          "sd": 7.860740661621094
+        },
+        "conflict/frame=false(true stmt)": {
+          "n": 98,
+          "mean_margin": 11.896190643310547,
+          "sd": 1.2483975887298584
+        },
+        "aligned/frame=true(true stmt)": {
+          "n": 98,
+          "mean_margin": 20.139888763427734,
+          "sd": 1.4097788333892822
+        },
+        "aligned/frame=false(false stmt)": {
+          "n": 98,
+          "mean_margin": -13.112602233886719,
+          "sd": 4.103425025939941
+        }
+      },
+      "mean_abs_margin_conflict": 15.476734161376953,
+      "mean_abs_margin_aligned": 16.63531494140625,
+      "margin_retention": 0.9303541421301545,
+      "auroc_by_plateau_layer": {
+        "17": 1.0,
+        "18": 1.0,
+        "19": 1.0,
+        "20": 1.0,
+        "21": 1.0,
+        "22": 0.9993752603082049,
+        "23": 0.9994793835901707,
+        "24": 0.9917742607246981,
+        "25": 0.9854227405247813,
+        "26": 0.9872969596001666,
+        "27": 0.9320074968763016,
+        "28": 0.963765097875885,
+        "29": 0.8444398167430237,
+        "30": 0.9581424406497293,
+        "31": 0.894835485214494
+      }
+    },
+    "lr": {
+      "auroc_vs_truth": 1.0,
+      "auroc_vs_truth_ci95": [
+        1.0,
+        1.0
+      ],
+      "auroc_vs_frame": 0.0,
+      "cells": {
+        "conflict/frame=true(false stmt)": {
+          "n": 98,
+          "mean_margin": -15.060917854309082,
+          "sd": 5.122008800506592
+        },
+        "conflict/frame=false(true stmt)": {
+          "n": 98,
+          "mean_margin": 8.966702461242676,
+          "sd": 1.210932731628418
+        },
+        "aligned/frame=true(true stmt)": {
+          "n": 98,
+          "mean_margin": 15.472687721252441,
+          "sd": 1.929744005203247
+        },
+        "aligned/frame=false(false stmt)": {
+          "n": 98,
+          "mean_margin": -9.378470420837402,
+          "sd": 2.81316876411438
+        }
+      },
+      "mean_abs_margin_conflict": 12.014352798461914,
+      "mean_abs_margin_aligned": 12.425578117370605,
+      "margin_retention": 0.9669049347222074,
+      "auroc_by_plateau_layer": {
+        "17": 1.0,
+        "18": 1.0,
+        "19": 1.0,
+        "20": 1.0,
+        "21": 1.0,
+        "22": 1.0,
+        "23": 1.0,
+        "24": 1.0,
+        "25": 0.9997917534360683,
+        "26": 0.9899000416493128,
+        "27": 0.9840691378592253,
+        "28": 0.8768221574344023,
+        "29": 0.8897334443981675,
+        "30": 0.8899416909620991,
+        "31": 0.9534568929612661
+      }
+    }
+  },
+  "interpretive_limit": "This result is informative about which representation is ACTIVE, not about intent. A probe tracking actual truth under a 'say something false' frame is consistent with the model representing the falsehood as false while framed to assert it (the interesting reading) AND equally consistent with the frame simply failing to shift anything \u2014 and for a base model the latter is a live possibility that this design cannot exclude. A probe tracking the frame would be consistent with the frame genuinely altering represented belief, in which case no lie is occurring. Probe output alone cannot separate these. This is not a deception detector and must never be reported as one."
+}

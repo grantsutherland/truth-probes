@@ -1,0 +1,215 @@
+{
+  "model": "gemma-2-9b",
+  "layer": 17,
+  "probe_train_set": "cities",
+  "retrained": false,
+  "n_rows": 392,
+  "n_facts": 98,
+  "coding": "label, frame in {0,1}; frame=1 means 'Say something true.'",
+  "bootstrap": {
+    "n": 10000,
+    "unit": "base_fact",
+    "seed": 0,
+    "note": "resampled by fact, not by row: the four cells of a fact share a statement and are correlated, so row resampling would understate every CI"
+  },
+  "headline": "The deceptive frame ATTENUATES the truth signal without reversing it. Conflict-cell AUROC is NOT the finding: truth and frame are collinear across those two cells, so its ceiling value is uninformative about the frame.",
+  "probes": {
+    "mm": {
+      "coefficients": {
+        "intercept": -68.38932734119653,
+        "label": 25.00879182620918,
+        "frame": -5.810892922537644,
+        "label:frame": 14.054590341996231
+      },
+      "ci95_fact_clustered": {
+        "intercept": [
+          -69.18621233336785,
+          -67.5603630844428
+        ],
+        "label": [
+          24.15133353447422,
+          25.822284411410845
+        ],
+        "frame": [
+          -6.78955241222767,
+          -4.799139850966735
+        ],
+        "label:frame": [
+          13.019194296428196,
+          15.062252470911831
+        ]
+      },
+      "truth_gap_lie_frame": 25.00879182620918,
+      "truth_gap_truth_frame": 39.06338216820541,
+      "compression": 0.3597893874492923,
+      "compression_ci95": [
+        0.34511534461120685,
+        0.37351180013351887
+      ],
+      "compression_from_margin_table": 0.3597894071149951,
+      "compression_agrees_algebraically": true,
+      "frame_effect_on_false_statements": -5.810892922537644,
+      "frame_effect_on_true_statements": 8.243697419458588,
+      "frame_effect_averaged_over_label": 1.2164022484604722,
+      "coefficients_as_fraction_of_label": {
+        "frame": -0.23235400426052713,
+        "label:frame": 0.5619859783577006,
+        "frame_averaged": 0.04863898491832318
+      },
+      "variance_structure": {
+        "false stmt / lie frame (aligned)": {
+          "n": 98,
+          "sd": 4.1034251321027755,
+          "spearman_score_vs_phase0_margin": 0.2726635171406895
+        },
+        "true  stmt / lie frame (CONFLICT)": {
+          "n": 98,
+          "sd": 1.2483975452401566,
+          "spearman_score_vs_phase0_margin": 0.19448641687227847
+        },
+        "false stmt / truth frame (CONFLICT)": {
+          "n": 98,
+          "sd": 7.860740766608894,
+          "spearman_score_vs_phase0_margin": 0.36192133835727364
+        },
+        "true  stmt / truth frame (aligned)": {
+          "n": 98,
+          "sd": 1.409778873971147,
+          "spearman_score_vs_phase0_margin": 0.1414672710696275
+        }
+      },
+      "attenuation_by_truth_value": {
+        "toward_boundary_true_raw": 8.243697419458506,
+        "toward_boundary_false_raw": 5.8108929225376675,
+        "asymmetry_true_minus_false_raw": 2.4328044969208387,
+        "asymmetry_ci95": [
+          1.4237884112766803,
+          3.460469847309346
+        ],
+        "asymmetry_significant": true,
+        "baseline_true": 20.139892208332917,
+        "baseline_false": 18.9234899598725,
+        "toward_boundary_true_ci95": [
+          8.04219451826446,
+          8.436388262923883
+        ],
+        "toward_boundary_false_ci95": [
+          4.799139850966784,
+          6.7895524122277084
+        ],
+        "pct_true": 0.4093218242770764,
+        "pct_true_ci95": [
+          0.4008077250049266,
+          0.417777799559747
+        ],
+        "pct_false": 0.30707300476073596,
+        "pct_false_ci95": [
+          0.27251385684786905,
+          0.3370554729869343
+        ],
+        "rho_false_attenuation_vs_baseline": -0.8958871271095131,
+        "rho_false_attenuation_vs_phase0_margin": -0.3179554858494476,
+        "rho_true_attenuation_vs_baseline": 0.40686902689848203
+      }
+    },
+    "lr": {
+      "coefficients": {
+        "intercept": -14.284728901726865,
+        "label": 18.3451729416087,
+        "frame": -5.682448508788124,
+        "label:frame": 12.188433120521351
+      },
+      "ci95_fact_clustered": {
+        "intercept": [
+          -14.829810988659766,
+          -13.709336611446076
+        ],
+        "label": [
+          17.71056994052452,
+          18.94309395610982
+        ],
+        "frame": [
+          -6.292781696879133,
+          -5.051918434366886
+        ],
+        "label:frame": [
+          11.494997567824104,
+          12.854344527489907
+        ]
+      },
+      "truth_gap_lie_frame": 18.3451729416087,
+      "truth_gap_truth_frame": 30.533606062130048,
+      "compression": 0.3991809252965477,
+      "compression_ci95": [
+        0.38737777428973286,
+        0.41053530395219034
+      ],
+      "compression_from_margin_table": 0.3991809176718002,
+      "compression_agrees_algebraically": true,
+      "frame_effect_on_false_statements": -5.682448508788124,
+      "frame_effect_on_true_statements": 6.505984611733227,
+      "frame_effect_averaged_over_label": 0.4117680514725519,
+      "coefficients_as_fraction_of_label": {
+        "frame": -0.3097517001815643,
+        "label:frame": 0.6643945608643873,
+        "frame_averaged": 0.022445580250629336
+      },
+      "variance_structure": {
+        "false stmt / lie frame (aligned)": {
+          "n": 98,
+          "sd": 2.813168683207492,
+          "spearman_score_vs_phase0_margin": 0.3622528674075067
+        },
+        "true  stmt / lie frame (CONFLICT)": {
+          "n": 98,
+          "sd": 1.2109327493330726,
+          "spearman_score_vs_phase0_margin": 0.5045170833094251
+        },
+        "false stmt / truth frame (CONFLICT)": {
+          "n": 98,
+          "sd": 5.122008715753154,
+          "spearman_score_vs_phase0_margin": 0.44091451013395055
+        },
+        "true  stmt / truth frame (aligned)": {
+          "n": 98,
+          "sd": 1.9297439207266225,
+          "spearman_score_vs_phase0_margin": 0.4268372766163636
+        }
+      },
+      "attenuation_by_truth_value": {
+        "toward_boundary_true_raw": 6.505984611733227,
+        "toward_boundary_false_raw": 5.682448508788128,
+        "asymmetry_true_minus_false_raw": 0.8235361029450994,
+        "asymmetry_ci95": [
+          0.1901118388855643,
+          1.4616913559333398
+        ],
+        "asymmetry_significant": true,
+        "baseline_true": 15.4726870568013,
+        "baseline_false": 15.060919005328751,
+        "toward_boundary_true_ci95": [
+          6.281327629560719,
+          6.721849477777676
+        ],
+        "toward_boundary_false_ci95": [
+          5.051918434366888,
+          6.292781696879133
+        ],
+        "pct_true": 0.42048188448776286,
+        "pct_true_ci95": [
+          0.41220178389565165,
+          0.42864867872108836
+        ],
+        "pct_false": 0.37729759430866094,
+        "pct_false_ci95": [
+          0.35376886141970154,
+          0.39865054132193345
+        ],
+        "rho_false_attenuation_vs_baseline": -0.8812105910780433,
+        "rho_false_attenuation_vs_phase0_margin": -0.37107664059063183,
+        "rho_true_attenuation_vs_baseline": 0.8122780508642071
+      }
+    }
+  },
+  "interpretive_limit": "This result is informative about which representation is ACTIVE, not about intent. A probe tracking actual truth under a 'say something false' frame is consistent with the model representing the falsehood as false while framed to assert it (the interesting reading) AND equally consistent with the frame simply failing to shift anything \u2014 and for a base model the latter is a live possibility that this design cannot exclude. A probe tracking the frame would be consistent with the frame genuinely altering represented belief, in which case no lie is occurring. Probe output alone cannot separate these. This is not a deception detector and must never be reported as one."
+}
