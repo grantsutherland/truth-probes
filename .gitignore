@@ -16,8 +16,29 @@ venv/
 results/activations/
 results/probes/
 
-# Keep results/*.json (the findings that back the write-up) — they are small
-# and tracked. Do NOT ignore them.
+# Keep results/<model>/*.json (the findings) — small, and tracked. Do NOT
+# ignore them. The prose write-ups and pre-registrations are NOT tracked; see
+# below.
 
 # SLURM job logs (the sbatch scripts themselves are tracked).
 cluster/logs/
+
+# ---------------------------------------------------------------------------
+# Prose, notes and write-ups — kept on disk, deliberately out of the repo.
+# The repo tracks code (scripts/, src/, cluster/*.sbatch, cluster/*.sh), the
+# top-level README, the input CSVs, and the results/<model>/*.json findings.
+# ---------------------------------------------------------------------------
+
+# Working notes at the top level. requirements.txt is a dependency list, not a
+# note, so it stays tracked.
+/*.txt
+!/requirements.txt
+
+# Prose write-ups.
+cluster/README.md
+results/eval_9b.md
+results/eval_h2.md
+
+# Pre-registrations.
+results/prereg_9b_prediction.json
+results/h2_prereg_phase3.json

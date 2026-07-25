@@ -359,6 +359,54 @@ def save_induced_lies(acts, rows, layers, token_pos, model_name):
     torch.save(payload, _cache_path(INDUCED_LIES))
 
 
+BARE_STATEMENTS = "induced_lies_bare"
+
+
+def save_bare_statements(acts, statements, labels, base_facts, layers,
+                         token_pos, model_name):
+    """Cache the H2 statements with NO frame prefix — the neutral baseline.
+
+    Separate from save_induced_lies rather than a sentinel `frame` value: these
+    rows have no frame and no condition, and encoding that as frame="none" would
+    put a value into a column every downstream consumer reads as a binary.
+    """
+    if not (acts.shape[0] == len(statements) == len(labels) == len(base_facts)):
+        raise ValueError("acts/statements/labels/base_facts length mismatch")
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    torch.save({
+        "version": CACHE_VERSION,
+        "dataset": BARE_STATEMENTS,
+        "acts": acts.cpu(),
+        "labels": torch.tensor(list(labels), dtype=torch.long),
+        "statements": list(statements),
+        "base_fact": list(base_facts),
+        "layers": list(layers),
+        "token_pos": token_pos,
+        "model_name": model_name,
+    }, _cache_path(BARE_STATEMENTS))
+
+
+def load_bare_statements(device=None):
+    """Load the no-frame baseline activations.
+
+    Returns acts (n, n_layers, d_model) float32, labels (n,) float, meta.
+    """
+    path = _cache_path(BARE_STATEMENTS)
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            f"No bare-statement cache at {path}. Run h2_05_noframe.py "
+            f"--phase extract first.")
+    payload = torch.load(path, map_location=device or "cpu", weights_only=False)
+    if payload.get("version") != CACHE_VERSION:
+        raise ValueError(f"{path} cache version {payload.get('version')} "
+                         f"!= {CACHE_VERSION}. Re-run extraction.")
+    meta = {k: payload[k] for k in
+            ("dataset", "statements", "base_fact", "layers", "token_pos",
+             "model_name")}
+    return (payload["acts"].to(dtype=torch.float32),
+            payload["labels"].to(dtype=torch.float32), meta)
+
+
 def load_induced_lies(device=None):
     """Load induced-lie activations.
 

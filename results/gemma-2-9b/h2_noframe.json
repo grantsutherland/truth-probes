@@ -1,0 +1,76 @@
+{
+  "model": "gemma-2-9b",
+  "layer": 17,
+  "n_statements": 196,
+  "n_facts": 98,
+  "probe_train_set": "cities",
+  "retrained": false,
+  "bootstrap": {
+    "n": 10000,
+    "unit": "base_fact",
+    "seed": 0
+  },
+  "statistic_note": "The truth GAP is centering-invariant (a difference of class means), which is why it carries the comparison: the bare set has a different global mean from the framed set and there is no shared principled zero.",
+  "anchor_note": "h1_anchor_gap is the same frozen probe's true/false gap on the 1496 H1 `cities` statements \u2014 the distribution it was fitted on. It is a sanity check on the bare number, not a condition of the design: bare/H1 near 1 means the neutral gap is normal for this probe, so 'both frames compress' cannot be explained by the H2 statement set being unusual.",
+  "confound_note": "The bare condition is in-distribution for the probe and both framed conditions are not, so 'both frames compress' is not cleanly separable from 'any prefix moves activations off the probe's fitted distribution'. The lie-vs-truth frame contrast is unaffected \u2014 both carry a prefix \u2014 and remains the design's clean comparison.",
+  "probes": {
+    "mm": {
+      "gap_bare": 63.620742471052374,
+      "gap_bare_ci95": [
+        59.32708962854492,
+        67.80157092772615
+      ],
+      "gap_lie_frame": 25.00879182620918,
+      "gap_truth_frame": 39.06338216820541,
+      "position_on_lie_to_truth_axis": 2.747283962412453,
+      "position_ci95": [
+        2.4417857061112582,
+        3.0447546360457602
+      ],
+      "lie_frame_effect_vs_neutral": -38.61195064484319,
+      "lie_frame_effect_ci95": [
+        -42.79277910151698,
+        -34.318297802335735
+      ],
+      "lie_frame_effect_pct": -60.69082054867835,
+      "truth_frame_effect_vs_neutral": -24.557360302846966,
+      "truth_frame_effect_ci95": [
+        -28.738188759520746,
+        -20.263707460339507
+      ],
+      "truth_frame_effect_pct": -38.59961287628895,
+      "h1_anchor_gap": 68.4756473279334,
+      "bare_over_h1_anchor": 0.9291002707337597,
+      "verdict": "BOTH FRAMES COMPRESS: the neutral gap exceeds both framed gaps, so neither frame amplifies; the lie-frame compresses 1.57x as much as the truth-frame"
+    },
+    "lr": {
+      "gap_bare": 46.84361010546587,
+      "gap_bare_ci95": [
+        44.560386547172556,
+        49.04010960328944
+      ],
+      "gap_lie_frame": 18.3451729416087,
+      "gap_truth_frame": 30.533606062130048,
+      "position_on_lie_to_truth_axis": 2.3381542879268946,
+      "position_ci95": [
+        2.15082721021999,
+        2.518366090059638
+      ],
+      "lie_frame_effect_vs_neutral": -28.498437163857172,
+      "lie_frame_effect_ci95": [
+        -30.69493666168074,
+        -26.215213605563857
+      ],
+      "lie_frame_effect_pct": -60.83740578425632,
+      "truth_frame_effect_vs_neutral": -16.310004043335823,
+      "truth_frame_effect_ci95": [
+        -18.50650354115939,
+        -14.02678048504251
+      ],
+      "truth_frame_effect_pct": -34.81799119797711,
+      "h1_anchor_gap": 52.82121531784853,
+      "bare_over_h1_anchor": 0.8868332510637483,
+      "verdict": "BOTH FRAMES COMPRESS: the neutral gap exceeds both framed gaps, so neither frame amplifies; the lie-frame compresses 1.75x as much as the truth-frame"
+    }
+  }
+}
